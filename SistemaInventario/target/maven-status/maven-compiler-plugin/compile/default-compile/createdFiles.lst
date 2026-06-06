@@ -2,6 +2,12 @@ com\inventario\view\MainView.class
 com\inventario\controller\InventarioController.class
 com\inventario\util\DatabaseConnection.class
 com\inventario\util\ExcelExporter.class
-com\inventario\model\Producto.class
+com\inventario\view\MainMenuView.class
 com\inventario\dao\ProductoDAO.class
+com\inventario\util\InitialSetup.class
+com\inventario\view\MainView$2.class
+com\inventario\dao\UsuarioDAO.class
+com\inventario\model\Producto.class
+com\inventario\view\LoginView.class
+com\inventario\view\MainView$1.class
 com\inventario\dao\ProductoDAOImpl.class
