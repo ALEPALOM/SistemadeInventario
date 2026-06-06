@@ -45,25 +45,35 @@ public class MainView extends JFrame {
     }
 
     private void guardar() {
-        try {
-            String nombre = txtNombre.getText();
-            int cantidad = Integer.parseInt(txtCantidad.getText());
-            double precio = Double.parseDouble(txtPrecio.getText());
-            
-            controller.registrarProducto(nombre, cantidad, precio);
-            JOptionPane.showMessageDialog(this, "Producto registrado correctamente.");
-            
-            txtNombre.setText("");
-            txtCantidad.setText("");
-            txtPrecio.setText("");
-            
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Cantidad y precio deben ser numéricos.", "Error de Input", JOptionPane.ERROR_MESSAGE);
-        } catch (IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
-        }
+    String nombre = txtNombre.getText();
+    String cantidadStr = txtCantidad.getText();
+    String precioStr = txtPrecio.getText();
+
+    if (nombre.isEmpty() || cantidadStr.isEmpty() || precioStr.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.");
+        return;
     }
 
+    try {
+        int cantidad = Integer.parseInt(cantidadStr);
+        double precio = Double.parseDouble(precioStr);
+        
+        // Intentamos guardar
+        controller.registrarProducto(nombre, cantidad, precio);
+        
+        JOptionPane.showMessageDialog(this, "¡Éxito! Producto guardado.");
+        txtNombre.setText("");
+        txtCantidad.setText("");
+        txtPrecio.setText("");
+        
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Error: Cantidad y precio deben ser números.");
+    } catch (Exception ex) {
+        // AQUÍ ESTÁ EL TRUCO: imprimimos el error real en la consola
+        ex.printStackTrace(); 
+        JOptionPane.showMessageDialog(this, "Error técnico: " + ex.getClass().getSimpleName() + " - " + ex.getMessage());
+    }
+}
     private void exportar() {
         controller.exportarInventario();
         JOptionPane.showMessageDialog(this, "Archivo Inventario_Reporte.xlsx generado en la raíz del proyecto.");

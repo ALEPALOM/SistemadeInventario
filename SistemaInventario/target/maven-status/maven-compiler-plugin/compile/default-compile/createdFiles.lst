@@ -1,5 +1,6 @@
 com\inventario\view\MainView.class
 com\inventario\controller\InventarioController.class
+com\inventario\util\DatabaseConnection.class
 com\inventario\util\ExcelExporter.class
 com\inventario\model\Producto.class
 com\inventario\dao\ProductoDAO.class
