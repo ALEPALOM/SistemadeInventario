@@ -10,8 +10,13 @@ import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ConsultarProductoView extends JPanel {
+    // Definimos el logger para esta clase
+    private static final Logger logger = LoggerFactory.getLogger(ConsultarProductoView.class);
+    
     private JTextField txtBuscar;
     private JButton btnBuscar;
     private JTable tablaProductos;
@@ -23,7 +28,7 @@ public class ConsultarProductoView extends JPanel {
     }
 
     private void configurarUI() {
-        setLayout(new BorderLayout(10, 10)); // BorderLayout es ideal para tablas
+        setLayout(new BorderLayout(10, 10));
         setBorder(new EmptyBorder(20, 20, 20, 20));
         setBackground(Color.WHITE);
 
@@ -38,18 +43,17 @@ public class ConsultarProductoView extends JPanel {
 
         txtBuscar = new JTextField();
         txtBuscar.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        txtBuscar.setPreferredSize(new Dimension(350, 35)); // Fuerza un ancho de 350 píxeles
-        txtBuscar.setMaximumSize(new Dimension(400, 35));   // Límite máximo
+        txtBuscar.setPreferredSize(new Dimension(350, 35));
+        txtBuscar.setMaximumSize(new Dimension(400, 35));
         txtBuscar.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLineBorder(new Color(200, 200, 200)),
             BorderFactory.createEmptyBorder(5, 10, 5, 10)
         ));
         
-        // El buscador reacciona al presionar ENTER
         txtBuscar.addActionListener(e -> cargarDatos(txtBuscar.getText()));
 
         btnBuscar = new JButton("Buscar");
-        btnBuscar.setBackground(new Color(41, 128, 185)); // Azul profesional
+        btnBuscar.setBackground(new Color(41, 128, 185));
         btnBuscar.setForeground(Color.WHITE);
         btnBuscar.setFont(new Font("SansSerif", Font.BOLD, 12));
         btnBuscar.setFocusPainted(false);
@@ -63,38 +67,35 @@ public class ConsultarProductoView extends JPanel {
         panelNorte.add(txtBuscar);
         panelNorte.add(Box.createRigidArea(new Dimension(15, 0)));
         panelNorte.add(btnBuscar);
-        panelNorte.add(Box.createHorizontalGlue()); // Empuja todo a la izquierda
+        panelNorte.add(Box.createHorizontalGlue());
 
         add(panelNorte, BorderLayout.NORTH);
 
         // --- PANEL CENTRAL (TABLA) ---
-        // Definimos las columnas
         String[] columnas = {"ID", "Nombre del Producto", "Cantidad", "Precio Unitario"};
         modeloTabla = new DefaultTableModel(columnas, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Evita que editen la tabla directamente
+                return false;
             }
         };
 
         tablaProductos = new JTable(modeloTabla);
         tablaProductos.setFont(new Font("SansSerif", Font.PLAIN, 13));
-        tablaProductos.setRowHeight(30); // Filas más altas para verse moderno
-        tablaProductos.setGridColor(new Color(230, 230, 230)); // Líneas suaves
+        tablaProductos.setRowHeight(30);
+        tablaProductos.setGridColor(new Color(230, 230, 230));
         tablaProductos.setSelectionBackground(new Color(52, 152, 219));
         tablaProductos.setSelectionForeground(Color.WHITE);
 
-        // Diseño del encabezado de la tabla
         JTableHeader header = tablaProductos.getTableHeader();
         header.setFont(new Font("SansSerif", Font.BOLD, 14));
         header.setBackground(new Color(240, 240, 240));
         header.setForeground(new Color(50, 50, 50));
         header.setPreferredSize(new Dimension(header.getWidth(), 35));
 
-        // Centrar el texto en las columnas de Cantidad y Precio
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        tablaProductos.getColumnModel().getColumn(0).setPreferredWidth(50); // ID más pequeño
+        tablaProductos.getColumnModel().getColumn(0).setPreferredWidth(50);
         tablaProductos.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         tablaProductos.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 
@@ -105,30 +106,29 @@ public class ConsultarProductoView extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
-    // Método para consultar a SQL Server
     private void cargarDatos(String filtro) {
-        modeloTabla.setRowCount(0); // Limpiar la tabla antes de cargar
+        modeloTabla.setRowCount(0);
         
-        // Asumiendo que tu tabla se llama "Productos"
         String sql = "SELECT * FROM Productos WHERE nombre LIKE ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
-            stmt.setString(1, "%" + filtro + "%"); // El % permite buscar coincidencias parciales
+            stmt.setString(1, "%" + filtro + "%");
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Object[] fila = new Object[4];
-                fila[0] = rs.getString("id"); // Cambia "id" si tu columna se llama distinto
+                fila[0] = rs.getString("id");
                 fila[1] = rs.getString("nombre");
                 fila[2] = rs.getString("cantidad");
                 fila[3] = rs.getString("precio");
                 modeloTabla.addRow(fila);
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error al cargar los productos: " + e.getMessage());
+            // Registro profesional del error
+            logger.error("Error al cargar los productos en ConsultarProductoView: {}", e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error técnico al consultar el inventario. Verifique los logs.");
         }
     }
 }

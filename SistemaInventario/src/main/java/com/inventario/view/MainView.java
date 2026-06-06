@@ -5,28 +5,30 @@ import com.inventario.dao.ProductoDAOImpl;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.EmptyBorder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MainView extends JPanel {
+    // Definimos el logger para esta clase
+    private static final Logger logger = LoggerFactory.getLogger(MainView.class);
+    
     private InventarioController controller;
     private JTextField txtNombre, txtCantidad, txtPrecio;
     private JButton btnGuardar, btnExportar;
 
     public MainView() {
-        // Se inyecta la dependencia aquí
         controller = new InventarioController(new ProductoDAOImpl());
         configurarUI();
     }
 
     private void configurarUI() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(new EmptyBorder(40, 40, 40, 40)); // Más espacio interno
+        setBorder(new EmptyBorder(40, 40, 40, 40));
         setBackground(Color.WHITE);
 
-        // Fuente elegante
         Font labelFont = new Font("SansSerif", Font.BOLD, 12);
         Font fieldFont = new Font("SansSerif", Font.PLAIN, 14);
 
-        // Campos
         add(createField("Nombre del Producto:", txtNombre = new JTextField(), labelFont, fieldFont));
         add(Box.createRigidArea(new Dimension(0, 20)));
         add(createField("Cantidad:", txtCantidad = new JTextField(), labelFont, fieldFont));
@@ -34,34 +36,31 @@ public class MainView extends JPanel {
         add(createField("Precio Unitario:", txtPrecio = new JTextField(), labelFont, fieldFont));
         add(Box.createRigidArea(new Dimension(0, 30)));
 
-        // --- BOTÓN GUARDAR MODERNO ---
         btnGuardar = new JButton("Guardar Producto");
-        btnGuardar.setBackground(new Color(41, 128, 185)); // Azul profesional
-        btnGuardar.setForeground(Color.WHITE);            // Letra blanca
+        btnGuardar.setBackground(new Color(41, 128, 185));
+        btnGuardar.setForeground(Color.WHITE);
         btnGuardar.setFont(new Font("SansSerif", Font.BOLD, 14));
-        btnGuardar.setFocusPainted(false);                
-        btnGuardar.setBorderPainted(false);               
-        btnGuardar.setOpaque(true);                       
+        btnGuardar.setFocusPainted(false);
+        btnGuardar.setBorderPainted(false);
+        btnGuardar.setOpaque(true);
         btnGuardar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnGuardar.setMaximumSize(new Dimension(250, 40)); // Mantiene el tamaño uniforme
-        btnGuardar.addActionListener(e -> guardar()); // Vuelve a vincular la acción de guardar
+        btnGuardar.setMaximumSize(new Dimension(250, 40));
+        btnGuardar.addActionListener(e -> guardar());
         
-        // Efecto hover (cambia de color al pasar el ratón)
         btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnGuardar.setBackground(new Color(52, 152, 219)); // Azul más claro
+                btnGuardar.setBackground(new Color(52, 152, 219));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnGuardar.setBackground(new Color(41, 128, 185)); // Vuelve al original
+                btnGuardar.setBackground(new Color(41, 128, 185));
             }
         });
         
         add(btnGuardar);
-        add(Box.createRigidArea(new Dimension(0, 15))); // Espacio entre botones
+        add(Box.createRigidArea(new Dimension(0, 15)));
 
-        // --- BOTÓN EXPORTAR MODERNO ---
         btnExportar = new JButton("Exportar a Excel");
-        btnExportar.setBackground(new Color(39, 174, 96)); // Verde profesional
+        btnExportar.setBackground(new Color(39, 174, 96));
         btnExportar.setForeground(Color.WHITE);
         btnExportar.setFont(new Font("SansSerif", Font.BOLD, 14));
         btnExportar.setFocusPainted(false);
@@ -71,20 +70,18 @@ public class MainView extends JPanel {
         btnExportar.setMaximumSize(new Dimension(250, 40));
         btnExportar.addActionListener(e -> exportar());
 
-        // Efecto hover para el botón exportar
         btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnExportar.setBackground(new Color(46, 204, 113)); // Verde más claro
+                btnExportar.setBackground(new Color(46, 204, 113));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnExportar.setBackground(new Color(39, 174, 96)); // Vuelve al original
+                btnExportar.setBackground(new Color(39, 174, 96));
             }
         });
 
         add(btnExportar);
     }
 
-    // --- MÉTODO FALTANTE PARA CREAR LOS CAMPOS UNIFORMES ---
     private JPanel createField(String labelText, JTextField field, Font labelFont, Font fieldFont) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -120,8 +117,6 @@ public class MainView extends JPanel {
         try {
             int cantidad = Integer.parseInt(cantidadStr);
             double precio = Double.parseDouble(precioStr);
-            
-            // Intentamos guardar
             controller.registrarProducto(nombre, cantidad, precio);
             
             JOptionPane.showMessageDialog(this, "¡Éxito! Producto guardado.");
@@ -132,13 +127,19 @@ public class MainView extends JPanel {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error: Cantidad y precio deben ser números.");
         } catch (Exception ex) {
-            ex.printStackTrace(); 
-            JOptionPane.showMessageDialog(this, "Error técnico: " + ex.getClass().getSimpleName() + " - " + ex.getMessage());
+            // AQUÍ REGISTRAMOS EL ERROR DE FORMA PROFESIONAL
+            logger.error("Error técnico al intentar guardar el producto: {}", ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error técnico registrado en el sistema. Contacte al administrador.");
         }
     }
 
     private void exportar() {
-        controller.exportarInventario();
-        JOptionPane.showMessageDialog(this, "Archivo Inventario_Reporte.xlsx generado en la raíz del proyecto.");
+        try {
+            controller.exportarInventario();
+            JOptionPane.showMessageDialog(this, "Archivo Inventario_Reporte.xlsx generado.");
+        } catch (Exception ex) {
+            logger.error("Error al exportar inventario: {}", ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al generar el archivo.");
+        }
     }
 }
