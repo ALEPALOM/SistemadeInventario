@@ -3,6 +3,7 @@ package com.inventario.dao;
 import com.inventario.model.Producto;
 import com.inventario.util.DatabaseConnection;
 import com.google.common.base.Preconditions;
+import com.google.common.base.Strings; // Importación necesaria para eliminarProducto
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,7 @@ public class ProductoDAOImpl implements ProductoDAO {
 
     @Override
     public void agregarProducto(Producto p) {
-        // Consideraciones de seguridad (se mantienen)
+        // Consideraciones de seguridad
         Preconditions.checkNotNull(p, "Error de seguridad: Producto nulo");
         String nombreSeguro = StringUtils.trimToEmpty(p.getNombre());
         
@@ -45,6 +46,71 @@ public class ProductoDAOImpl implements ProductoDAO {
         } catch (SQLException e) {
             logger.error("Error al ejecutar el guardado en SQL Server", e);
             throw new RuntimeException("Error al guardar en la base de datos", e);
+        }
+    }
+
+    // --- NUEVO MÉTODO: ACTUALIZAR PRODUCTO ---
+    @Override
+    public void actualizarProducto(Producto p) {
+        Preconditions.checkNotNull(p, "Error de seguridad: Producto a actualizar es nulo");
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(p.getId()), "El ID del producto no puede estar vacío");
+        
+        String nombreSeguro = StringUtils.trimToEmpty(p.getNombre());
+        
+        if (nombreSeguro.isEmpty() || p.getCantidad() < 0 || p.getPrecio() < 0) {
+            logger.warn("Intento de actualización con datos inválidos para el ID: {}", p.getId());
+            throw new IllegalArgumentException("Datos inválidos para actualizar.");
+        }
+
+        String sql = "UPDATE Productos SET nombre = ?, cantidad = ?, precio = ? WHERE id = ?";
+        
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setString(1, nombreSeguro);
+            stmt.setInt(2, p.getCantidad());
+            stmt.setDouble(3, p.getPrecio());
+            stmt.setString(4, p.getId());
+            
+            int filasAfectadas = stmt.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                logger.info("Producto actualizado exitosamente: ID {}", p.getId());
+            } else {
+                logger.warn("Intento de actualizar un producto que no existe. ID: {}", p.getId());
+                throw new RuntimeException("No se encontró el producto con el ID especificado.");
+            }
+            
+        } catch (SQLException e) {
+            logger.error("Error al actualizar en SQL Server", e);
+            throw new RuntimeException("Error al actualizar en la base de datos", e);
+        }
+    }
+
+    // --- NUEVO MÉTODO: ELIMINAR PRODUCTO ---
+    @Override
+    public void eliminarProducto(String id) {
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(id), "Error de seguridad: El ID a eliminar está vacío");
+
+        String sql = "DELETE FROM Productos WHERE id = ?";
+        
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setString(1, id);
+            
+            int filasAfectadas = stmt.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                logger.info("Producto eliminado exitosamente de la base de datos: ID {}", id);
+            } else {
+                logger.warn("Intento de eliminar un producto que no existe. ID: {}", id);
+                throw new RuntimeException("No se encontró el producto a eliminar.");
+            }
+            
+        } catch (SQLException e) {
+            logger.error("Error al eliminar en SQL Server", e);
+            throw new RuntimeException("Error al eliminar de la base de datos", e);
         }
     }
 

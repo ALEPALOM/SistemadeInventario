@@ -82,7 +82,7 @@ public class MainMenuView extends JFrame {
     
     private void abrirFormularioConsulta() {
         JInternalFrame frame = new JInternalFrame("Consultar Inventario", true, true, true, true);
-        frame.setSize(600, 450);
+        frame.setSize(650, 450);
         
         ConsultarProductoView panelConsulta = new ConsultarProductoView();
         frame.add(panelConsulta);

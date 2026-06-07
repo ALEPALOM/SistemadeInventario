@@ -1,0 +1,14 @@
+2026-06-06 18:41:50 [AWT-EventQueue-0] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Monitor
+2026-06-06 20:00:02 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-06 20:03:19 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-06 20:07:14 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-06 20:12:50 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-06 20:15:21 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-06 20:18:33 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-06 20:18:43 [AWT-EventQueue-0] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID 1780772464670
+2026-06-06 20:23:43 [AWT-EventQueue-0] INFO  com.inventario.dao.ProductoDAOImpl - Producto actualizado exitosamente: ID 1780772507320
+2026-06-06 20:26:13 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-06 20:28:10 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-06 20:29:25 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-06 20:30:08 [AWT-EventQueue-0] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Teclado
+2026-06-06 20:47:38 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
