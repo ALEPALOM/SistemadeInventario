@@ -11,111 +11,160 @@ public class LoginView extends JFrame {
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     public LoginView() {
-        setTitle("Sistema de Inventario - Acceso");
-        setSize(380, 480); // Un poco más ancho y alto para mayor elegancia
+        setTitle("Iniciar sesión - Colegio Claretiano Huancayo");
+        setSize(760, 480);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        
-        // Panel principal con diseño inmaculado
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        mainPanel.setBorder(new EmptyBorder(50, 40, 50, 40));
-        mainPanel.setBackground(Color.WHITE); // Fondo completamente blanco
+        setResizable(false);
 
-        // Fuentes modernas
-        Font titleFont = new Font("SansSerif", Font.BOLD, 26);
-        Font labelFont = new Font("SansSerif", Font.BOLD, 12);
-        Font fieldFont = new Font("SansSerif", Font.PLAIN, 14);
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(new Color(1, 35, 70)); // Azul de la imagen
 
-        // Título
-        JLabel title = new JLabel("Bienvenido", JLabel.CENTER);
-        title.setFont(titleFont);
+        // ===================== PANEL IZQUIERDO (LOGO) =====================
+        JPanel leftPanel = createLeftPanel();
+
+        // ===================== PANEL DERECHO (FORMULARIO) =====================
+        JPanel rightPanel = new JPanel();
+        rightPanel.setBackground(Color.WHITE);
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        rightPanel.setBorder(new EmptyBorder(45, 55, 45, 55));
+
+        JLabel title = new JLabel("Iniciar sesión");
+        title.setFont(new Font("SansSerif", Font.BOLD, 27));
+        title.setForeground(new Color(1, 35, 70));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.setForeground(new Color(50, 50, 50)); // Gris muy oscuro, más elegante que el negro puro
 
-        // Instanciamos los campos antes de pasarlos al contenedor
         txtUser = new JTextField();
         txtPass = new JPasswordField();
 
-        // Botón profesional con estilo Flat Design
-        JButton btnLogin = new JButton("INGRESAR");
-        btnLogin.setFont(new Font("SansSerif", Font.BOLD, 14));
-        btnLogin.setBackground(new Color(41, 128, 185)); // Mismo azul profesional del registro
+        JButton btnLogin = new JButton("Iniciar sesión");
+        btnLogin.setFont(new Font("SansSerif", Font.BOLD, 15));
+        btnLogin.setBackground(new Color(0, 102, 204));
         btnLogin.setForeground(Color.WHITE);
         btnLogin.setFocusPainted(false);
         btnLogin.setBorderPainted(false);
         btnLogin.setOpaque(true);
+        btnLogin.setMaximumSize(new Dimension(290, 45));
         btnLogin.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnLogin.setMaximumSize(new Dimension(280, 40)); // Tamaño uniforme
 
-        // Efecto Hover para el botón
+        // Hover
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnLogin.setBackground(new Color(52, 152, 219)); // Azul más claro al pasar el ratón
+                btnLogin.setBackground(new Color(0, 122, 224));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnLogin.setBackground(new Color(41, 128, 185)); // Vuelve al color original
+                btnLogin.setBackground(new Color(0, 102, 204));
             }
         });
-        
+
         btnLogin.addActionListener(e -> validar());
 
-        // Ensamblado del panel
-        mainPanel.add(title);
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 40))); // Espacio bajo el título
-        mainPanel.add(createFieldContainer("Usuario:", txtUser, labelFont, fieldFont));
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Espacio entre campos
-        mainPanel.add(createFieldContainer("Contraseña:", txtPass, labelFont, fieldFont));
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 40))); // Espacio antes del botón
-        mainPanel.add(btnLogin);
+        // Ensamblaje
+        rightPanel.add(title);
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 40)));
+        rightPanel.add(createField("Usuario", txtUser, "/user.png"));   // ← Cambia el nombre
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 22)));
+        rightPanel.add(createField("Contraseña", txtPass, "/pass.png")); // ← Cambia el nombre
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 45)));
+        rightPanel.add(btnLogin);
+
+        mainPanel.add(leftPanel, BorderLayout.WEST);
+        mainPanel.add(rightPanel, BorderLayout.CENTER);
 
         add(mainPanel);
     }
 
-    // Método para crear grupos de Etiqueta + Campo de texto con estilo uniforme
-    private JPanel createFieldContainer(String labelText, JTextField field, Font labelFont, Font fieldFont) {
+    private JPanel createLeftPanel() {
+        JPanel leftPanel = new JPanel();
+        leftPanel.setBackground(new Color(1, 35, 70));
+        leftPanel.setPreferredSize(new Dimension(340, 480));
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+
+        // Logo principal
+        JLabel logoLabel = new JLabel();
+        try {
+            ImageIcon logoIcon = new ImageIcon(getClass().getResource("/icono.png"));
+            Image scaled = logoIcon.getImage().getScaledInstance(165, 180, Image.SCALE_SMOOTH);
+            logoLabel.setIcon(new ImageIcon(scaled));
+        } catch (Exception e) {
+            logoLabel.setText("Colegio Claretiano Huancayo");
+            logoLabel.setForeground(Color.WHITE);
+            logoLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+        }
+        logoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel nombre1 = new JLabel("Colegio Claretiano", JLabel.CENTER);
+        nombre1.setFont(new Font("SansSerif", Font.BOLD, 23));
+        nombre1.setForeground(Color.WHITE);
+        nombre1.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel nombre2 = new JLabel("Huancayo", JLabel.CENTER);
+        nombre2.setFont(new Font("SansSerif", Font.PLAIN, 19));
+        nombre2.setForeground(new Color(180, 220, 255));
+        nombre2.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        leftPanel.add(Box.createVerticalGlue());
+        leftPanel.add(logoLabel);
+        leftPanel.add(Box.createRigidArea(new Dimension(0, 25)));
+        leftPanel.add(nombre1);
+        leftPanel.add(nombre2);
+        leftPanel.add(Box.createVerticalGlue());
+
+        return leftPanel;
+    }
+
+    // Método para crear campos con tus iconos reales
+    private JPanel createField(String labelText, JTextField field, String iconPath) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(Color.WHITE);
+        panel.setMaximumSize(new Dimension(290, 75));
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.setMaximumSize(new Dimension(280, 65)); 
 
-        JLabel label = new JLabel(labelText);
-        label.setFont(labelFont);
-        label.setAlignmentX(Component.LEFT_ALIGNMENT);
-        label.setForeground(new Color(100, 100, 100)); // Etiquetas en gris moderno
-        
-        field.setFont(fieldFont);
-        field.setAlignmentX(Component.LEFT_ALIGNMENT);
-        field.setMaximumSize(new Dimension(280, 35));
-        
-        // Borde personalizado: Línea gris clara con padding interno para que el texto no se pegue
+        JLabel label = new JLabel();
+        try {
+            ImageIcon icon = new ImageIcon(getClass().getResource(iconPath));
+            Image scaledIcon = icon.getImage().getScaledInstance(28, 28, Image.SCALE_SMOOTH);
+            label.setIcon(new ImageIcon(scaledIcon));
+            label.setText("   " + labelText);
+        } catch (Exception e) {
+            label.setText(labelText); // fallback si no carga el icono
+        }
+
+        label.setFont(new Font("SansSerif", Font.BOLD, 14));
+        label.setForeground(new Color(60, 60, 60));
+
+        field.setFont(new Font("SansSerif", Font.PLAIN, 15));
+        field.setMaximumSize(new Dimension(290, 42));
         field.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(200, 200, 200)),
-            BorderFactory.createEmptyBorder(5, 10, 5, 10)
+            BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+            BorderFactory.createEmptyBorder(10, 12, 10, 12)
         ));
 
         panel.add(label);
-        panel.add(Box.createRigidArea(new Dimension(0, 5)));
+        panel.add(Box.createRigidArea(new Dimension(0, 7)));
         panel.add(field);
 
         return panel;
     }
 
     private void validar() {
-        String user = txtUser.getText();
+        String user = txtUser.getText().trim();
         String pass = new String(txtPass.getPassword());
+
+        if (user.isEmpty() || pass.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos.", 
+                "Campos requeridos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
         if (usuarioDAO.autenticar(user, pass)) {
             this.dispose();
-            new MainMenuView().setVisible(true); 
+            new MainMenuView().setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, 
-                "Credenciales incorrectas.", 
-                "Acceso denegado", 
-                JOptionPane.ERROR_MESSAGE);
-            
-            txtPass.setText(""); 
+            JOptionPane.showMessageDialog(this, "Credenciales incorrectas.", 
+                "Acceso denegado", JOptionPane.ERROR_MESSAGE);
+            txtPass.setText("");
             txtPass.requestFocus();
         }
     }
@@ -124,11 +173,6 @@ public class LoginView extends JFrame {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {}
-
-        // IMPORTANTE: Si ya creaste el usuario "admin" en la base de datos, 
-        // comenta esta línea poniéndole '//' al inicio para evitar errores de duplicidad.
-        // new UsuarioDAO().registrarUsuario("admin", "123456");
-
         SwingUtilities.invokeLater(() -> new LoginView().setVisible(true));
     }
 }
