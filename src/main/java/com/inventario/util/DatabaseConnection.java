@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
     // URL sin complicaciones de seguridad
-    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=InventarioDB;encrypt=false;trustServerCertificate=true;";
+    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=inventario_claretiano;encrypt=false;trustServerCertificate=true;";
     
     // DEFINIMOS EL USUARIO Y LA CONTRASEÑA AQUÍ
     private static final String USER = "sa";
