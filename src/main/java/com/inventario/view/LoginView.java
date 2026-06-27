@@ -1,302 +1,144 @@
 package com.inventario.view;
 
-import com.inventario.dao.UsuarioDAO;
-import javax.swing.*;
-import javax.swing.border.*;
 import java.awt.*;
+import java.io.File;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class LoginView extends JFrame {
-    private JTextField txtUser;
-    private JPasswordField txtPass;
-    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+    // Cambia estas rutas por las ubicaciones reales de tus imágenes en tu PC
+    private final String RUTA_LOGO = "src/main/resources/icono.png";
+    private final String RUTA_ICONO_USER = "src/main/resources/pass.png";
+    private final String RUTA_ICONO_PASS = "src/main/resources/user.png";
 
     public LoginView() {
-        setTitle("Iniciar sesión - Colegio Claretiano Huancayo");
-        setSize(900, 550);
+        // Configuración básica de la ventana (JFrame)
+        setTitle("Iniciar Sesión - Colegio Claretiano Huancayo");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setSize(750, 450);
+        setLocationRelativeTo(null); // Centrar en pantalla
         setResizable(false);
 
-        // Panel principal con gradiente azul
-        JPanel mainPanel = new JPanel(new GridBagLayout()) {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                Graphics2D g2d = (Graphics2D) g;
-                g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-                GradientPaint gp = new GradientPaint(0, 0, new Color(1, 35, 70), getWidth(), getHeight(), new Color(20, 60, 120));
-                g2d.setPaint(gp);
-                g2d.fillRect(0, 0, getWidth(), getHeight());
-            }
-        };
-        mainPanel.setOpaque(false);
-        
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 0.4;
-        gbc.weighty = 1.0;
+        // Panel Principal con el fondo azul #0D284A
+        JPanel principalPanel = new JPanel(new BorderLayout());
+        principalPanel.setBackground(new Color(13, 40, 74));
+        principalPanel.setBorder(new EmptyBorder(30, 40, 30, 40));
+        setContentPane(principalPanel);
 
-        // ===================== PANEL IZQUIERDO (LOGO) =====================
-        JPanel leftPanel = new JPanel(new GridBagLayout());
-        leftPanel.setOpaque(false);
-        
-        // Logo con sombra y efecto
-        JPanel logoContainer = new JPanel();
-        logoContainer.setOpaque(false);
-        logoContainer.setLayout(new BoxLayout(logoContainer, BoxLayout.Y_AXIS));
-        
-        JLabel logoLabel = new JLabel();
-        try {
-            ImageIcon logoIcon = new ImageIcon(getClass().getResource("/icono.png"));
-            Image scaled = logoIcon.getImage().getScaledInstance(180, 190, Image.SCALE_SMOOTH);
-            logoLabel.setIcon(new ImageIcon(scaled));
-        } catch (Exception e) {
-            logoLabel.setFont(new Font("Segoe UI", Font.PLAIN, 100));
-            logoLabel.setForeground(Color.WHITE);
-        }
-        logoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        // Línea decorativa debajo del logo
-        JPanel linePanel = new JPanel();
-        linePanel.setOpaque(false);
-        linePanel.setMaximumSize(new Dimension(120, 3));
-        linePanel.setPreferredSize(new Dimension(120, 3));
-        JLabel line = new JLabel("━━━━━━━━━━━━━━━━");
-        line.setForeground(new Color(255, 215, 0, 180));
-        line.setFont(new Font("Arial", Font.PLAIN, 16));
-        linePanel.add(line);
-        linePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        logoContainer.add(Box.createVerticalGlue());
-        logoContainer.add(logoLabel);
-        logoContainer.add(Box.createRigidArea(new Dimension(0, 15)));
-        logoContainer.add(linePanel);
-        logoContainer.add(Box.createVerticalGlue());
-        
-        leftPanel.add(logoContainer);
-        
-        gbc.gridx = 0;
-        mainPanel.add(leftPanel, gbc);
+        // 1. TÍTULO SUPERIOR ("Iniciar sesión")
+        JLabel lblTitulo = new JLabel("Iniciar sesión", SwingConstants.CENTER);
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 32));
+        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setBorder(new EmptyBorder(0, 0, 20, 0));
+        principalPanel.add(lblTitulo, BorderLayout.NORTH);
 
-        // ===================== PANEL DERECHO (FORMULARIO) =====================
-        JPanel rightPanel = new JPanel(new GridBagLayout());
-        rightPanel.setOpaque(false);
-        
-        // Tarjeta blanca con sombra para el formulario
-        JPanel cardPanel = new JPanel();
-        cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
-        cardPanel.setBackground(Color.WHITE);
-        cardPanel.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(255, 255, 255, 50), 1),
-            BorderFactory.createEmptyBorder(45, 45, 45, 45)
-        ));
-        cardPanel.setMaximumSize(new Dimension(380, 450));
-        cardPanel.setPreferredSize(new Dimension(380, 450));
-        
-        // Sombra de la tarjeta
-        cardPanel.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(200, 200, 200, 30), 1),
-            BorderFactory.createEmptyBorder(40, 40, 40, 40)
-        ));
-        
-        // Título
-        JLabel title = new JLabel("Bienvenido");
-        title.setFont(new Font("Segoe UI", Font.BOLD, 28));
-        title.setForeground(new Color(1, 35, 70));
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        JLabel subtitle = new JLabel("Inicie sesión para continuar");
-        subtitle.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        subtitle.setForeground(new Color(120, 120, 140));
-        subtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        // Campo Usuario con icono
-        txtUser = new JTextField();
-        JPanel userPanel = createModernFieldWithIcon("Usuario", txtUser, "/user.png");
-        
-        // Campo Contraseña con icono
-        txtPass = new JPasswordField();
-        JPanel passPanel = createModernFieldWithIcon("Contraseña", txtPass, "/pass.png");
-        
-        // Botón Iniciar sesión
-        JButton btnLogin = new JButton("INICIAR SESIÓN");
-        btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        btnLogin.setBackground(new Color(100, 100, 115));
-        btnLogin.setForeground(Color.WHITE);
-        btnLogin.setFocusPainted(false);
-        btnLogin.setBorderPainted(false);
-        btnLogin.setOpaque(true);
-        btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnLogin.setMaximumSize(new Dimension(320, 48));
-        btnLogin.setPreferredSize(new Dimension(320, 48));
-        btnLogin.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        // Bordes redondeados para el botón
-        btnLogin.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-        
-        // Hover efecto
-        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnLogin.setBackground(new Color(120, 120, 140));
-                btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnLogin.setBackground(new Color(100, 100, 115));
-            }
-        });
-        
-        btnLogin.addActionListener(e -> validar());
-        
-        // Botón de limpiar
-        JButton btnClear = new JButton("Limpiar");
-        btnClear.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        btnClear.setBackground(new Color(240, 240, 245));
-        btnClear.setForeground(new Color(100, 100, 115));
-        btnClear.setFocusPainted(false);
-        btnClear.setBorderPainted(false);
-        btnClear.setOpaque(true);
-        btnClear.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnClear.setMaximumSize(new Dimension(100, 30));
-        btnClear.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        btnClear.addActionListener(e -> {
-            txtUser.setText("");
-            txtPass.setText("");
-            txtUser.requestFocus();
-        });
-        
-        // Panel para botones
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-        buttonPanel.setBackground(Color.WHITE);
-        buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buttonPanel.add(btnLogin);
-        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        buttonPanel.add(btnClear);
-        
-        // Ensamblaje de la tarjeta
-        cardPanel.add(title);
-        cardPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-        cardPanel.add(subtitle);
-        cardPanel.add(Box.createRigidArea(new Dimension(0, 35)));
-        cardPanel.add(userPanel);
-        cardPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        cardPanel.add(passPanel);
-        cardPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-        cardPanel.add(buttonPanel);
-        
-        rightPanel.add(cardPanel);
-        
-        gbc.gridx = 1;
-        gbc.weightx = 0.6;
-        mainPanel.add(rightPanel, gbc);
-        
-        add(mainPanel);
-    }
-    
-    private JPanel createModernFieldWithIcon(String labelText, JTextField field, String iconPath) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground(Color.WHITE);
-        panel.setMaximumSize(new Dimension(350, 80));
-        panel.setPreferredSize(new Dimension(350, 80));
-        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        // Panel para el label con icono
-        JPanel labelPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-        labelPanel.setBackground(Color.WHITE);
-        labelPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
-        // Cargar icono
-        JLabel iconLabel = new JLabel();
-        try {
-            ImageIcon icon = new ImageIcon(getClass().getResource(iconPath));
-            Image scaledIcon = icon.getImage().getScaledInstance(22, 22, Image.SCALE_SMOOTH);
-            iconLabel.setIcon(new ImageIcon(scaledIcon));
-        } catch (Exception e) {
-            iconLabel.setForeground(new Color(100, 100, 115));
-            iconLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        }
-        
-        JLabel textLabel = new JLabel(" " + labelText);
-        textLabel.setFont(new Font("Segoe UI", Font.BOLD, 13));
-        textLabel.setForeground(new Color(60, 60, 80));
-        
-        labelPanel.add(iconLabel);
-        labelPanel.add(textLabel);
-        
-        // Campo de texto estilizado
-        field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        field.setMaximumSize(new Dimension(350, 42));
-        field.setPreferredSize(new Dimension(350, 42));
-        field.setBackground(new Color(248, 249, 250));
-        field.setForeground(new Color(50, 50, 60));
-        field.setCaretColor(new Color(1, 35, 70));
-        
-        // Borde redondeado
-        field.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(220, 220, 230), 1),
-            BorderFactory.createEmptyBorder(10, 15, 10, 15)
-        ));
-        
-        // Efecto focus
-        field.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                field.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createLineBorder(new Color(100, 100, 115), 2),
-                    BorderFactory.createEmptyBorder(9, 14, 9, 14)
-                ));
-                field.setBackground(Color.WHITE);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                field.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createLineBorder(new Color(220, 220, 230), 1),
-                    BorderFactory.createEmptyBorder(10, 15, 10, 15)
-                ));
-                field.setBackground(new Color(248, 249, 250));
-            }
-        });
-        
-        if (field instanceof JPasswordField) {
-            ((JPasswordField) field).setEchoChar('*');
-        }
-        
-        panel.add(labelPanel);
-        panel.add(Box.createRigidArea(new Dimension(0, 5)));
-        panel.add(field);
-        
-        return panel;
-    }
+        // Contenedor para el Logo y el Formulario (Centro)
+        JPanel centroPanel = new JPanel(new GridLayout(1, 2, 20, 0));
+        centroPanel.setOpaque(false);
+        principalPanel.add(centroPanel, BorderLayout.CENTER);
 
-    private void validar() {
-        String user = txtUser.getText().trim();
-        String pass = new String(txtPass.getPassword());
-
-        if (user.isEmpty() || pass.isEmpty()) {
-            JOptionPane.showMessageDialog(this, 
-                "Por favor complete todos los campos.", 
-                "Campos requeridos", 
-                JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        if (usuarioDAO.autenticar(user, pass)) {
-            this.dispose();
-            new MainMenuView().setVisible(true);
+        // 2. PARTE IZQUIERDA: LOGO
+        JPanel logoPanel = new JPanel(new GridBagLayout());
+        logoPanel.setOpaque(false);
+        
+        JLabel lblLogo = new JLabel();
+        // Cargar imagen de manera segura
+        if (new File(RUTA_LOGO).exists()) {
+            ImageIcon iconLogo = new ImageIcon(RUTA_LOGO);
+            // Escalar imagen si es necesario (ejemplo a 180px de ancho)
+            Image img = iconLogo.getImage().getScaledInstance(180, -1, Image.SCALE_SMOOTH);
+            lblLogo.setIcon(new ImageIcon(img));
         } else {
-            JOptionPane.showMessageDialog(this, 
-                "Credenciales incorrectas.\nPor favor intente nuevamente.", 
-                "Acceso denegado", 
-                JOptionPane.ERROR_MESSAGE);
-            txtPass.setText("");
-            txtPass.requestFocus();
+            lblLogo.setText("[Logo Colegio]");
+            lblLogo.setForeground(Color.LIGHT_GRAY);
+        }
+        logoPanel.add(lblLogo);
+        centroPanel.add(logoPanel);
+
+        // 3. PARTE DERECHA: FORMULARIO (GridBagLayout para control total de alineación)
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        formPanel.setOpaque(false);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(8, 5, 8, 5); // Margen entre componentes
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // --- FILA 1: Etiqueta "Usuario" ---
+        gbc.gridx = 1; gbc.gridy = 0; gbc.gridwidth = 2;
+        JLabel lblUsuario = new JLabel("Usuario");
+        lblUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        lblUsuario.setForeground(Color.WHITE);
+        formPanel.add(lblUsuario, gbc);
+
+        // --- FILA 2: Icono Usuario + Input ---
+        gbc.gridx = 0; gbc.gridy = 1; gbc.gridwidth = 1;
+        JLabel lblIconoUser = new JLabel();
+         colocalIcono(lblIconoUser, RUTA_ICONO_USER);
+        formPanel.add(lblIconoUser, gbc);
+
+        gbc.gridx = 1; gbc.gridy = 1; gbc.gridwidth = 2;
+        JTextField txtUsuario = new JTextField(15);
+        txtUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        txtUsuario.setBackground(new Color(240, 240, 240));
+        txtUsuario.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+                BorderFactory.createEmptyBorder(5, 8, 5, 8)
+        ));
+        formPanel.add(txtUsuario, gbc);
+
+        // --- FILA 3: Etiqueta "Contraseña" ---
+        gbc.gridx = 1; gbc.gridy = 2; gbc.gridwidth = 2;
+        JLabel lblContrasena = new JLabel("Contraseña");
+        lblContrasena.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        lblContrasena.setForeground(Color.WHITE);
+        formPanel.add(lblContrasena, gbc);
+
+        // --- FILA 4: Icono Candado + Input ---
+        gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 1;
+        JLabel lblIconoPass = new JLabel();
+        colocalIcono(lblIconoPass, RUTA_ICONO_PASS);
+        formPanel.add(lblIconoPass, gbc);
+
+        gbc.gridx = 1; gbc.gridy = 3; gbc.gridwidth = 2;
+        JPasswordField txtContrasena = new JPasswordField(15);
+        txtContrasena.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        txtContrasena.setBackground(new Color(240, 240, 240));
+        txtContrasena.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+                BorderFactory.createEmptyBorder(5, 8, 5, 8)
+        ));
+        formPanel.add(txtContrasena, gbc);
+
+        // --- FILA 5: Botón "Iniciar sesión" ---
+        gbc.gridx = 1; gbc.gridy = 4; gbc.gridwidth = 2;
+        gbc.insets = new Insets(25, 5, 8, 5); // Más espacio arriba del botón
+        JButton btnLogin = new JButton("Iniciar sesión");
+        btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        btnLogin.setBackground(new Color(235, 235, 235));
+        btnLogin.setForeground(new Color(30, 30, 30));
+        btnLogin.setFocusPainted(false);
+        btnLogin.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
+        formPanel.add(btnLogin, gbc);
+
+        centroPanel.add(formPanel);
+    }
+
+    // Método auxiliar para cargar e instalar los iconos de 30x30 px de manera limpia
+    private void colocalIcono(JLabel label, String ruta) {
+        if (new File(ruta).exists()) {
+            ImageIcon icon = new ImageIcon(ruta);
+            Image img = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+            label.setIcon(new ImageIcon(img));
+        } else {
+            label.setText("O"); // Marcador en caso de que no encuentre el archivo
+            label.setForeground(Color.CYAN);
         }
     }
 
     public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {}
-        SwingUtilities.invokeLater(() -> new LoginView().setVisible(true));
+        // Ejecutar la interfaz gráfica de forma segura
+        SwingUtilities.invokeLater(() -> {
+            new LoginView().setVisible(true);
+        });
     }
 }

@@ -7,7 +7,12 @@ C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\util
 C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\util\ExcelExporter.java
 C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\util\InitialSetup.java
 C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\view\AdministrarEquiposView.java
+C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\view\BuscarEquiposView.java
 C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\view\ConsultarProductoView.java
+C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\view\ControlInventarioView.java
 C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\view\LoginView.java
 C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\view\MainMenuView.java
 C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\view\MainView.java
+C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\view\MantenimientoView.java
+C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\view\MostrarEquiposView.java
+C:\Users\Luis Daniel\Desktop\SistemaInventario\src\main\java\com\inventario\view\PrincipalMenuView.java
