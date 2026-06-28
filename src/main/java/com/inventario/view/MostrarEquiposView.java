@@ -11,27 +11,19 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-public class MostrarEquiposView extends JFrame {
+public class MostrarEquiposView extends JPanel {
 
     // Cambia esta ruta por la ubicación real de tu logo en NetBeans
     private final String RUTA_LOGO = "src/main/resources/icono.png";
 
     public MostrarEquiposView() {
-        // 1. Configuración básica del JFrame
-        setTitle("Mostrar Equipos - Colegio Claretiano Huancayo");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(960, 680); // Proporción exacta para la grilla y el contenedor gris
-        setLocationRelativeTo(null); // Centrar la ventana en pantalla
-        setResizable(false);
-
-        // 2. Panel Principal (Fondo Azul Institucional #0D284A)
-        JPanel panelPrincipal = new JPanel(new BorderLayout(0, 20));
-        panelPrincipal.setBackground(new Color(13, 40, 74));
-        panelPrincipal.setBorder(new EmptyBorder(25, 40, 25, 40));
-        setContentPane(panelPrincipal);
+        // 1. Configuración de ESTE panel (ya no es un JFrame)
+        setLayout(new BorderLayout(0, 20));
+        setBackground(new Color(13, 40, 74));
+        setBorder(new EmptyBorder(25, 40, 25, 40));
 
         // ==========================================
-        // 3. BLOQUE SUPERIOR (Logo + Título + Criterios de Selección)
+        // 2. BLOQUE SUPERIOR (Logo + Título + Criterios de Selección)
         // ==========================================
         JPanel panelSuperior = new JPanel(new BorderLayout());
         panelSuperior.setOpaque(false);
@@ -40,7 +32,7 @@ public class MostrarEquiposView extends JFrame {
         JLabel lblLogo = new JLabel();
         if (new File(RUTA_LOGO).exists()) {
             ImageIcon iconLogo = new ImageIcon(RUTA_LOGO);
-            Image img = iconLogo.getImage().getScaledInstance(160, -1, Image.SCALE_SMOOTH);
+            Image img = iconLogo.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH);
             lblLogo.setIcon(new ImageIcon(img));
         } else {
             lblLogo.setText("[ Escudo ]");
@@ -60,7 +52,7 @@ public class MostrarEquiposView extends JFrame {
 
         // Título de la Ventana
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
-        gbc.insets = new Insets(0, 10, 15, 10);
+        gbc.insets = new Insets(0, 10, 05, 10);
         JLabel lblTitulo = new JLabel("Mostrar Equipos", SwingConstants.CENTER);
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 36));
         lblTitulo.setForeground(Color.WHITE);
@@ -91,10 +83,12 @@ public class MostrarEquiposView extends JFrame {
         // Añadir el panel de filtros con un margen derecho para balancear el escudo
         panelCentralFiltros.setBorder(new EmptyBorder(0, 0, 0, 120));
         panelSuperior.add(panelCentralFiltros, BorderLayout.CENTER);
-        panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
+        
+        // AÑADIMOS EL PANEL SUPERIOR DIRECTAMENTE A ESTA CLASE
+        add(panelSuperior, BorderLayout.NORTH);
 
         // ==========================================
-        // 4. BLOQUE CENTRAL (Tabla JTable)
+        // 3. BLOQUE CENTRAL (Tabla JTable)
         // ==========================================
         String[] columnas = {"ID del Equipo", "Número de Se...", "Tipo de Equipo", "Marca", "Modelo", "Estado", "Ubicación"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
@@ -114,10 +108,12 @@ public class MostrarEquiposView extends JFrame {
 
         JScrollPane scrollPane = new JScrollPane(tablaEquipos);
         scrollPane.setBorder(BorderFactory.createLineBorder(new Color(127, 140, 141), 1));
-        panelPrincipal.add(scrollPane, BorderLayout.CENTER);
+        
+        // AÑADIMOS LA TABLA DIRECTAMENTE A ESTA CLASE
+        add(scrollPane, BorderLayout.CENTER);
 
         // ==========================================
-        // 5. BLOQUE INFERIOR (Fila de 5 Botones de Acción)
+        // 4. BLOQUE INFERIOR (Fila de 5 Botones de Acción)
         // ==========================================
         JPanel panelInferiorBotones = new JPanel(new BorderLayout());
         panelInferiorBotones.setOpaque(false);
@@ -138,7 +134,8 @@ public class MostrarEquiposView extends JFrame {
         panelDerecho.add(crearBotonEstilizado("Salir"));
         panelInferiorBotones.add(panelDerecho, BorderLayout.EAST);
 
-        panelPrincipal.add(panelInferiorBotones, BorderLayout.SOUTH);
+        // AÑADIMOS LOS BOTONES DIRECTAMENTE A ESTA CLASE
+        add(panelInferiorBotones, BorderLayout.SOUTH);
     }
 
     // Métodos Helper para homogeneizar fuentes, bordes y estilos
@@ -170,11 +167,5 @@ public class MostrarEquiposView extends JFrame {
                 BorderFactory.createEmptyBorder(6, 16, 6, 16)
         ));
         return btn;
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new MostrarEquiposView().setVisible(true);
-        });
     }
 }

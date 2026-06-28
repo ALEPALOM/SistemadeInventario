@@ -298,3 +298,58 @@ com.microsoft.sqlserver.jdbc.SQLServerException: Invalid column name 'username'.
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2026-06-28 10:04:15 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 10:06:40 [AWT-EventQueue-0] WARN  com.inventario.dao.UsuarioDAO - Intento de inicio de sesión fallido (contraseña incorrecta). Usuario: admin
+2026-06-28 10:06:47 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 10:12:22 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 10:15:13 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 10:21:59 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 10:29:01 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 10:39:38 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 10:50:05 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 10:52:42 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 10:56:08 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 10:58:59 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 11:05:29 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 11:12:18 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 11:15:41 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 11:16:33 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 11:17:43 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 11:21:00 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 11:21:43 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 11:23:02 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 11:23:46 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 11:24:23 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 12:28:42 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-06-28 12:36:37 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-06-28 12:36:37 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-06-28 12:36:37 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-06-28 12:36:57 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-06-28 12:36:57 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-06-28 12:36:57 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-06-28 12:58:45 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-06-28 12:58:45 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-06-28 12:58:45 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-06-28 12:59:01 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-06-28 12:59:02 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-06-28 12:59:02 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-06-28 14:28:10 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-06-28 14:28:10 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-06-28 14:28:10 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-06-28 15:02:46 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-06-28 15:02:46 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-06-28 15:02:46 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-06-28 15:03:37 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-06-28 15:03:38 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-06-28 15:03:38 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-06-28 15:28:26 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-06-28 15:28:27 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-06-28 15:28:27 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-06-28 15:34:37 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 15:36:39 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 15:42:22 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 15:43:22 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 15:52:28 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 15:57:10 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 15:59:07 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-06-28 16:11:03 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin

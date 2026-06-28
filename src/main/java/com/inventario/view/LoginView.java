@@ -1,5 +1,6 @@
 package com.inventario.view;
 
+import com.inventario.dao.UsuarioDAO;
 import java.awt.*;
 import java.io.File;
 import javax.swing.*;
@@ -7,7 +8,12 @@ import javax.swing.border.EmptyBorder;
 
 public class LoginView extends JFrame {
 
-    // Cambia estas rutas por las ubicaciones reales de tus imágenes en tu PC
+    // LÓGICA: Atributos de persistencia y campos globales
+    private JTextField txtUsuario;
+    private JPasswordField txtContrasena;
+    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+    // DISEÑO: Rutas de recursos multimedia
     private final String RUTA_LOGO = "src/main/resources/icono.png";
     private final String RUTA_ICONO_USER = "src/main/resources/pass.png";
     private final String RUTA_ICONO_PASS = "src/main/resources/user.png";
@@ -43,10 +49,8 @@ public class LoginView extends JFrame {
         logoPanel.setOpaque(false);
         
         JLabel lblLogo = new JLabel();
-        // Cargar imagen de manera segura
         if (new File(RUTA_LOGO).exists()) {
             ImageIcon iconLogo = new ImageIcon(RUTA_LOGO);
-            // Escalar imagen si es necesario (ejemplo a 180px de ancho)
             Image img = iconLogo.getImage().getScaledInstance(180, -1, Image.SCALE_SMOOTH);
             lblLogo.setIcon(new ImageIcon(img));
         } else {
@@ -73,11 +77,11 @@ public class LoginView extends JFrame {
         // --- FILA 2: Icono Usuario + Input ---
         gbc.gridx = 0; gbc.gridy = 1; gbc.gridwidth = 1;
         JLabel lblIconoUser = new JLabel();
-         colocalIcono(lblIconoUser, RUTA_ICONO_USER);
+        colocalIcono(lblIconoUser, RUTA_ICONO_USER);
         formPanel.add(lblIconoUser, gbc);
 
         gbc.gridx = 1; gbc.gridy = 1; gbc.gridwidth = 2;
-        JTextField txtUsuario = new JTextField(15);
+        txtUsuario = new JTextField(15); // Asignación directa a variable de la clase
         txtUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         txtUsuario.setBackground(new Color(240, 240, 240));
         txtUsuario.setBorder(BorderFactory.createCompoundBorder(
@@ -100,7 +104,7 @@ public class LoginView extends JFrame {
         formPanel.add(lblIconoPass, gbc);
 
         gbc.gridx = 1; gbc.gridy = 3; gbc.gridwidth = 2;
-        JPasswordField txtContrasena = new JPasswordField(15);
+        txtContrasena = new JPasswordField(15); // Asignación directa a variable de la clase
         txtContrasena.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         txtContrasena.setBackground(new Color(240, 240, 240));
         txtContrasena.setBorder(BorderFactory.createCompoundBorder(
@@ -118,25 +122,52 @@ public class LoginView extends JFrame {
         btnLogin.setForeground(new Color(30, 30, 30));
         btnLogin.setFocusPainted(false);
         btnLogin.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
+        
+        // LÓGICA: Vinculación del evento del botón al método validar
+        btnLogin.addActionListener(e -> validar());
+        
         formPanel.add(btnLogin, gbc);
-
         centroPanel.add(formPanel);
     }
 
-    // Método auxiliar para cargar e instalar los iconos de 30x30 px de manera limpia
+    // LÓGICA: Método encargado de procesar la autenticación real con la Base de Datos
+    private void validar() {
+        String user = txtUsuario.getText();
+        String pass = new String(txtContrasena.getPassword());
+
+        if (usuarioDAO.autenticar(user, pass)) {
+            this.dispose(); // Cierra la ventana de login
+            new PrincipalMenuView().setVisible(true); // Abre el menú principal real
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                "Credenciales incorrectas.", 
+                "Acceso denegado", 
+                JOptionPane.ERROR_MESSAGE);
+            
+            txtContrasena.setText(""); 
+            txtContrasena.requestFocus();
+        }
+    }
+
+    // DISEÑO: Método auxiliar para cargar e instalar los iconos de las cajas de texto
     private void colocalIcono(JLabel label, String ruta) {
         if (new File(ruta).exists()) {
             ImageIcon icon = new ImageIcon(ruta);
             Image img = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
             label.setIcon(new ImageIcon(img));
         } else {
-            label.setText("O"); // Marcador en caso de que no encuentre el archivo
+            label.setText("O"); 
             label.setForeground(Color.CYAN);
         }
     }
 
     public static void main(String[] args) {
-        // Ejecutar la interfaz gráfica de forma segura
+        try {
+            // Activa el Look and Feel del sistema operativo para mayor elegancia
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {}
+
+        // Ejecutar la interfaz gráfica de forma segura en el hilo de Swing
         SwingUtilities.invokeLater(() -> {
             new LoginView().setVisible(true);
         });

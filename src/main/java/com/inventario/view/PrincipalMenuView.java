@@ -20,7 +20,9 @@ public class PrincipalMenuView extends JFrame {
     private final Color AZUL_OSCURO = new Color(13, 40, 74);
     private final Color DORADO = new Color(243, 156, 18);
     private final Color BLANCO_TEXTO = new Color(224, 230, 237);
-
+    
+    private JDesktopPane desktop;
+    
     public PrincipalMenuView() {
         setTitle("SGE - Colegio Claretiano Huancayo");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -121,6 +123,13 @@ public class PrincipalMenuView extends JFrame {
 
         contenedorWidget.add(widgetEstado);
         panelFondo.add(contenedorWidget, BorderLayout.SOUTH);
+        
+          // 3. LA SOLUCIÓN: Inicializar el escritorio, hacerlo transparente 
+        // y añadirlo al centro del diseño para no tapar tu imagen de fondo.
+        desktop = new JDesktopPane();
+        desktop.setOpaque(false); // Permite que se vea la imagen de fondo
+        panelFondo.add(desktop, BorderLayout.CENTER); // Lo colocamos en medio de los menús
+       
     }
 
     // Helpers
@@ -196,22 +205,46 @@ public class PrincipalMenuView extends JFrame {
 
     private JPopupMenu crearPopupEquipos() {
         JPopupMenu popup = crearPopupBase();
-        popup.add(crearMenuItem("Administrar Equipos", "src/iconos/admin.png", false));
-        popup.add(crearMenuItem("Buscar Equipos", "src/iconos/search.png", false));
-        popup.add(crearMenuItem("Mostrar Lista", "src/iconos/list.png", false));
+      // 1. Creamos el ítem, le asignamos la acción y luego lo agregamos
+        JMenuItem btnAdministrar = crearMenuItem("Administrar Equipos", "src/iconos/admin.png", false);
+        btnAdministrar.addActionListener(e -> abrirFormularioRegistro());
+        popup.add(btnAdministrar);
+
+        // 2. Hacemos lo mismo con el botón de Buscar
+        JMenuItem btnBuscar = crearMenuItem("Buscar Equipos", "src/iconos/search.png", false);
+        btnBuscar.addActionListener(e -> abrirFormularioConsulta());
+        popup.add(btnBuscar);
+
+        // 3. Este botón se queda sin acción hasta que crees su respectivo formulario
+          JMenuItem btnListar = crearMenuItem("Mostrar Lista", "src/iconos/list.png", false);
+        btnListar.addActionListener(e -> abrirFormularioLista());
+        popup.add(btnListar);
+        
         return popup;
     }
 
     private JPopupMenu crearPopupSoporte() {
         JPopupMenu popup = crearPopupBase();
-        popup.add(crearMenuItem("Mantenimiento", "src/iconos/tools.png", false));
+        
+        // 1. Creamos el ítem, le asignamos la acción y luego lo agregamos
+        JMenuItem btnMantenimiento = crearMenuItem("Mantenimiento", "src/iconos/tools.png", false);
+        btnMantenimiento.addActionListener(e -> abrirFormularioMantenimiento());
+        popup.add(btnMantenimiento);
+        
+       
         popup.add(crearMenuItem("Historial Técnico", "src/iconos/history.png", false));
         return popup;
     }
 
     private JPopupMenu crearPopupInforme() {
         JPopupMenu popup = crearPopupBase();
-        popup.add(crearMenuItem("Control Inventario", "src/iconos/report.png", false));
+        
+            // 1. Creamos el ítem, le asignamos la acción y luego lo agregamos
+        JMenuItem btnControlInventario = crearMenuItem("Control Inventario", "src/iconos/report.png", false);
+        btnControlInventario.addActionListener(e -> abrirFormularioControlInventario());
+        popup.add(btnControlInventario);
+        
+       
         popup.add(crearMenuItem("Exportar PDF/Excel", "src/iconos/export.png", false));
         popup.addSeparator();
 
@@ -235,15 +268,81 @@ public class PrincipalMenuView extends JFrame {
         }
         return null;
     }
-
-    // Main
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ignored) {}
-
-        SwingUtilities.invokeLater(() -> {
-            new PrincipalMenuView().setVisible(true);
-        });
+    
+        private void abrirFormularioRegistro() {
+        JInternalFrame frame = new JInternalFrame("Registro de Productos", true, true, true, true);
+        frame.setSize(400, 450);
+        
+        MainView panelRegistro = new MainView();
+        frame.add(panelRegistro);
+        
+        centrarFrame(frame);
+        frame.setVisible(true);
+        desktop.add(frame);
+        frame.moveToFront();
+    }
+    
+    private void abrirFormularioConsulta() {
+        JInternalFrame frame = new JInternalFrame("Consultar Inventario", true, true, true, true);
+        frame.setSize(650, 450);
+        
+        ConsultarProductoView panelConsulta = new ConsultarProductoView();
+        frame.add(panelConsulta);
+        
+        centrarFrame(frame);
+        frame.setVisible(true);
+        desktop.add(frame);
+        frame.moveToFront();
+    }
+    
+    private void abrirFormularioLista(){
+     JInternalFrame frame = new JInternalFrame("Mostrar lista", true, true, true, true);
+        frame.setSize(700, 460);
+        
+        MostrarEquiposView panelListar = new MostrarEquiposView();
+        frame.add(panelListar);
+        
+        desktop.add(frame);
+        centrarFrame(frame);
+        frame.setVisible(true);
+        frame.moveToFront();
+    
+    }
+    
+    
+   private void abrirFormularioMantenimiento(){
+      JInternalFrame frame = new JInternalFrame("Mostrar matenimiento de equipos", true, true, true, true);
+        frame.setSize(700, 460);
+        
+        MantenimientoView panelListar = new MantenimientoView();
+        frame.add(panelListar);
+        
+        desktop.add(frame);
+        centrarFrame(frame);
+        frame.setVisible(true);
+        frame.moveToFront();
+       
+   }
+   
+   private void abrirFormularioControlInventario(){
+   
+     JInternalFrame frame = new JInternalFrame("Mostrar control de inventario", true, true, true, true);
+        frame.setSize(700, 460);
+        
+        ControlInventarioView panelListar = new ControlInventarioView();
+        frame.add(panelListar);
+        
+        desktop.add(frame);
+        centrarFrame(frame);
+        frame.setVisible(true);
+        frame.moveToFront();
+   }
+    // Método auxiliar para centrar cualquier ventana interna
+    private void centrarFrame(JInternalFrame frame) {
+        int x = (desktop.getWidth() - frame.getWidth()) / 2;
+        int y = (desktop.getHeight() - frame.getHeight()) / 2;
+        if (x < 0) x = 0;
+        if (y < 0) y = 0;
+        frame.setLocation(x, y);
     }
 }

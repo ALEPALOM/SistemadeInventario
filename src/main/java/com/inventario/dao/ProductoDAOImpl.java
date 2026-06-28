@@ -139,4 +139,18 @@ public class ProductoDAOImpl implements ProductoDAO {
         
         return lista;
     }
+    
+    // --- MÉTODO REQUERIDO EL TEST DE SEGURIDAD ---
+   
+    public void buscarProducto(String id) {
+        String sql = "SELECT * FROM Productos WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, id);
+            ps.executeQuery();
+        } catch (SQLException e) {
+            logger.error("Error al buscar producto: " + e.getMessage());
+            throw new RuntimeException("Error en la búsqueda", e);
+        }
+    }
 }
