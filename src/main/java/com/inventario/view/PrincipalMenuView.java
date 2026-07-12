@@ -187,8 +187,12 @@ public class PrincipalMenuView extends JFrame {
     // --- MÉTODOS DE POPUP E ICONOS CORREGIDOS ---
     private JPopupMenu crearPopupInicio() {
         JPopupMenu popup = crearPopupBase();
-        popup.add(crearMenuItem("Panel de Control", "home.png", false));
-        popup.add(crearMenuItem("Cambiar Usuario", "user.png", false));
+        JMenuItem btnP = crearMenuItem("Panel de Producto", "home.png", false);
+        btnP.addActionListener (e -> abrirMainView());
+        popup.add(btnP);
+        JMenuItem btnLP = crearMenuItem("Listar Producto", "user.png", false);
+        btnLP.addActionListener(e -> abrirConsultarProductoView());
+        popup.add(btnLP);
         return popup;
     }
     private JPopupMenu crearPopupEquipos() {
@@ -253,4 +257,6 @@ public class PrincipalMenuView extends JFrame {
     private void abrirAdministrarEquipos() { new AdministrarEquiposView().setVisible(true); }
     private void abrirBuscarEquipos() { new BuscarEquiposView().setVisible(true); }
     private void abrirFormularioMantenimiento() { new MantenimientoView().setVisible(true); }
+    private void abrirMainView(){ new MainView().setVisible(true);}
+    private void abrirConsultarProductoView(){ new ConsultarProductoView().setVisible(true);}
 }

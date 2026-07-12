@@ -26,6 +26,5 @@ com\inventario\view\PrincipalMenuView$1.class
 com\inventario\view\MainMenuView$1.class
 com\inventario\view\PrincipalMenuView$6.class
 com\inventario\view\LoginView.class
-com\inventario\view\MainView$1.class
 com\inventario\model\Equipo.class
 com\inventario\dao\ProductoDAOImpl.class

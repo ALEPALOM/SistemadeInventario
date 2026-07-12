@@ -826,3 +826,23 @@ com.microsoft.sqlserver.jdbc.SQLServerException: Violation of UNIQUE KEY constra
 2026-07-11 19:30:51 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
 2026-07-11 19:30:52 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
 2026-07-11 19:30:52 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-07-12 12:38:03 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-12 12:41:14 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-12 12:43:39 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-12 12:49:04 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-12 12:51:50 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-12 13:05:31 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-12 13:24:13 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-12 13:27:04 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-12 13:34:09 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-12 13:37:52 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-12 13:47:04 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-07-12 13:47:04 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-07-12 13:47:04 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-07-12 13:52:10 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-12 13:52:32 [AWT-EventQueue-0] INFO  com.inventario.util.ExcelExporter - Inventario exportado exitosamente a Excel.
+2026-07-12 13:54:54 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-12 13:55:07 [AWT-EventQueue-0] INFO  com.inventario.util.ExcelExporter - Inventario exportado exitosamente a Excel.
+2026-07-12 13:56:25 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-07-12 13:56:25 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-07-12 13:56:25 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
