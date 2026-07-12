@@ -9,13 +9,16 @@ com\inventario\dao\ProductoDAO.class
 com\inventario\util\InitialSetup.class
 com\inventario\dao\UsuarioDAO.class
 com\inventario\view\AdministrarEquiposView.class
+com\inventario\view\ControlInventarioView$1.class
 com\inventario\model\Producto.class
 com\inventario\view\PrincipalMenuView$2.class
+com\inventario\util\ReporteManager.class
 com\inventario\view\ConsultarProductoView$1.class
 com\inventario\view\MostrarEquiposView.class
 com\inventario\view\PrincipalMenuView.class
 com\inventario\view\PrincipalMenuView$4.class
 com\inventario\view\MantenimientoView.class
+com\inventario\dao\EquipoDAO.class
 com\inventario\view\ControlInventarioView.class
 com\inventario\view\ConsultarProductoView.class
 com\inventario\view\BuscarEquiposView.class
@@ -24,4 +27,5 @@ com\inventario\view\MainMenuView$1.class
 com\inventario\view\PrincipalMenuView$6.class
 com\inventario\view\LoginView.class
 com\inventario\view\MainView$1.class
+com\inventario\model\Equipo.class
 com\inventario\dao\ProductoDAOImpl.class

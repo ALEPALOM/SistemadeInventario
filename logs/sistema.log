@@ -353,3 +353,476 @@ com.microsoft.sqlserver.jdbc.SQLServerException: Invalid column name 'username'.
 2026-06-28 15:57:10 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
 2026-06-28 15:59:07 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
 2026-06-28 16:11:03 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-07-11 11:15:34 [AWT-EventQueue-0] WARN  com.inventario.dao.UsuarioDAO - Intento de inicio de sesión fallido (usuario no existe). Usuario: admind
+2026-07-11 11:15:45 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin
+2026-07-11 11:29:34 [AWT-EventQueue-0] ERROR com.inventario.dao.UsuarioDAO - Error técnico durante la autenticación del usuario: admin
+com.microsoft.sqlserver.jdbc.SQLServerException: Invalid column name 'username'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1695)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:648)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:567)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7675)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4137)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:272)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:246)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeQuery(SQLServerPreparedStatement.java:485)
+	at com.inventario.dao.UsuarioDAO.autenticar(UsuarioDAO.java:55)
+	at com.inventario.view.LoginView.validar(LoginView.java:138)
+	at com.inventario.view.LoginView.lambda$new$0(LoginView.java:127)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2026-07-11 11:29:42 [AWT-EventQueue-0] ERROR com.inventario.dao.UsuarioDAO - Error técnico durante la autenticación del usuario: admin
+com.microsoft.sqlserver.jdbc.SQLServerException: Invalid column name 'username'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1695)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:648)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:567)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7675)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4137)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:272)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:246)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeQuery(SQLServerPreparedStatement.java:485)
+	at com.inventario.dao.UsuarioDAO.autenticar(UsuarioDAO.java:55)
+	at com.inventario.view.LoginView.validar(LoginView.java:138)
+	at com.inventario.view.LoginView.lambda$new$0(LoginView.java:127)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2026-07-11 11:29:56 [AWT-EventQueue-0] ERROR com.inventario.dao.UsuarioDAO - Error técnico durante la autenticación del usuario: admin
+com.microsoft.sqlserver.jdbc.SQLServerException: Invalid column name 'username'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1695)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:648)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:567)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7675)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4137)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:272)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:246)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeQuery(SQLServerPreparedStatement.java:485)
+	at com.inventario.dao.UsuarioDAO.autenticar(UsuarioDAO.java:55)
+	at com.inventario.view.LoginView.validar(LoginView.java:138)
+	at com.inventario.view.LoginView.lambda$new$0(LoginView.java:127)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2026-07-11 11:35:09 [AWT-EventQueue-0] ERROR com.inventario.dao.UsuarioDAO - Error técnico durante la autenticación del usuario: admin
+com.microsoft.sqlserver.jdbc.SQLServerException: Invalid column name 'username'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1695)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:648)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:567)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7675)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4137)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:272)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:246)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeQuery(SQLServerPreparedStatement.java:485)
+	at com.inventario.dao.UsuarioDAO.autenticar(UsuarioDAO.java:55)
+	at com.inventario.view.LoginView.validar(LoginView.java:138)
+	at com.inventario.view.LoginView.lambda$new$0(LoginView.java:127)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2026-07-11 11:35:18 [AWT-EventQueue-0] ERROR com.inventario.dao.UsuarioDAO - Error técnico durante la autenticación del usuario: admin
+com.microsoft.sqlserver.jdbc.SQLServerException: Invalid column name 'username'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1695)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:648)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:567)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7675)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4137)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:272)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:246)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeQuery(SQLServerPreparedStatement.java:485)
+	at com.inventario.dao.UsuarioDAO.autenticar(UsuarioDAO.java:55)
+	at com.inventario.view.LoginView.validar(LoginView.java:138)
+	at com.inventario.view.LoginView.lambda$new$0(LoginView.java:127)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2026-07-11 11:36:28 [AWT-EventQueue-0] ERROR com.inventario.dao.UsuarioDAO - Error técnico durante la autenticación del usuario: admin
+com.microsoft.sqlserver.jdbc.SQLServerException: Invalid column name 'username'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1695)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:648)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:567)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7675)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4137)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:272)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:246)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeQuery(SQLServerPreparedStatement.java:485)
+	at com.inventario.dao.UsuarioDAO.autenticar(UsuarioDAO.java:55)
+	at com.inventario.view.LoginView.validar(LoginView.java:138)
+	at com.inventario.view.LoginView.lambda$new$0(LoginView.java:127)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2026-07-11 11:44:09 [AWT-EventQueue-0] WARN  com.inventario.dao.UsuarioDAO - Intento de inicio de sesión fallido (contraseña incorrecta). Usuario: admin
+2026-07-11 11:44:42 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-07-11 11:44:43 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-07-11 11:44:43 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-07-11 11:45:59 [AWT-EventQueue-0] WARN  com.inventario.dao.UsuarioDAO - Intento de inicio de sesión fallido (contraseña incorrecta). Usuario: admin
+2026-07-11 11:49:35 [AWT-EventQueue-0] WARN  com.inventario.dao.UsuarioDAO - Intento de inicio de sesión fallido (contraseña incorrecta). Usuario: admin
+2026-07-11 11:56:12 [AWT-EventQueue-0] WARN  com.inventario.dao.UsuarioDAO - Intento de inicio de sesión fallido (contraseña incorrecta). Usuario: admin
+2026-07-11 11:58:55 [AWT-EventQueue-0] WARN  com.inventario.dao.UsuarioDAO - Intento de inicio de sesión fallido (contraseña incorrecta). Usuario: admin
+2026-07-11 12:03:43 [main] INFO  com.inventario.dao.UsuarioDAO - Usuario registrado exitosamente en el sistema: admin2
+2026-07-11 12:03:51 [AWT-EventQueue-0] WARN  com.inventario.dao.UsuarioDAO - Intento de inicio de sesión fallido (usuario no existe). Usuario: admin
+2026-07-11 12:04:24 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 12:28:29 [AWT-EventQueue-0] INFO  com.inventario.dao.EquipoDAO - Equipo registrado: SN-998877
+2026-07-11 12:32:44 [AWT-EventQueue-0] INFO  com.inventario.dao.EquipoDAO - Equipo actualizado: 1
+2026-07-11 12:33:19 [AWT-EventQueue-0] INFO  com.inventario.dao.EquipoDAO - Equipo dado de baja: 1
+2026-07-11 12:33:52 [AWT-EventQueue-0] ERROR com.inventario.dao.EquipoDAO - Error al registrar equipo
+com.microsoft.sqlserver.jdbc.SQLServerException: Violation of UNIQUE KEY constraint 'UQ__equipos__D8D7353C5E15AB37'. Cannot insert duplicate key in object 'dbo.equipos'. The duplicate key value is (SN-998877).
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1695)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:648)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:567)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7675)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4137)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:272)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:246)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.execute(SQLServerPreparedStatement.java:544)
+	at com.inventario.dao.EquipoDAO.registrarEquipo(EquipoDAO.java:33)
+	at com.inventario.view.AdministrarEquiposView.registrarEquipo(AdministrarEquiposView.java:212)
+	at com.inventario.view.AdministrarEquiposView.lambda$new$0(AdministrarEquiposView.java:123)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2026-07-11 12:35:52 [AWT-EventQueue-0] INFO  com.inventario.dao.EquipoDAO - Equipo registrado: SN-998878
+2026-07-11 12:43:38 [AWT-EventQueue-0] INFO  com.inventario.dao.EquipoDAO - Equipo registrado: NS-998877
+2026-07-11 12:44:38 [AWT-EventQueue-0] INFO  com.inventario.dao.EquipoDAO - Equipo restaurado: 1
+2026-07-11 12:45:04 [AWT-EventQueue-0] INFO  com.inventario.dao.EquipoDAO - Equipo dado de baja: 4
+2026-07-11 12:55:46 [AWT-EventQueue-0] INFO  com.inventario.dao.EquipoDAO - Equipo restaurado: 4
+2026-07-11 13:12:23 [main] ERROR com.inventario.dao.UsuarioDAO - Error al registrar el usuario en SQL Server: admin2
+com.microsoft.sqlserver.jdbc.SQLServerException: Violation of UNIQUE KEY constraint 'UQ__usuarios__9AFF8FC6E0C93BB5'. Cannot insert duplicate key in object 'dbo.usuarios'. The duplicate key value is (admin2).
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1695)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:648)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:567)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7675)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4137)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:272)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:246)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeUpdate(SQLServerPreparedStatement.java:512)
+	at com.inventario.dao.UsuarioDAO.registrarUsuario(UsuarioDAO.java:35)
+	at com.inventario.view.LoginView.main(LoginView.java:171)
+2026-07-11 13:12:43 [main] ERROR com.inventario.dao.UsuarioDAO - Error al registrar el usuario en SQL Server: admin2
+com.microsoft.sqlserver.jdbc.SQLServerException: Violation of UNIQUE KEY constraint 'UQ__usuarios__9AFF8FC6E0C93BB5'. Cannot insert duplicate key in object 'dbo.usuarios'. The duplicate key value is (admin2).
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:259)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1695)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:648)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:567)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:7675)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:4137)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:272)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:246)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeUpdate(SQLServerPreparedStatement.java:512)
+	at com.inventario.dao.UsuarioDAO.registrarUsuario(UsuarioDAO.java:35)
+	at com.inventario.view.LoginView.main(LoginView.java:171)
+2026-07-11 13:14:30 [AWT-EventQueue-0] WARN  com.inventario.dao.UsuarioDAO - Intento de inicio de sesión fallido (usuario no existe). Usuario: admin
+2026-07-11 13:14:43 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:27:07 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:27:33 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-07-11 13:27:33 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-07-11 13:27:33 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-07-11 13:28:01 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:29:44 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:36:33 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:37:35 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:38:41 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:41:35 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:43:24 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:44:51 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:48:07 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:55:45 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:56:56 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 13:57:35 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 14:05:39 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 14:08:00 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 14:10:54 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 14:11:33 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 14:12:57 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 14:15:39 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 14:16:53 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 14:17:47 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 14:20:21 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 15:41:42 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 15:45:32 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 15:49:47 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 15:52:48 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 15:54:16 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 15:55:01 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 16:00:33 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 16:01:34 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 16:03:54 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 16:05:02 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 16:08:13 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 16:14:19 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 16:25:53 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 16:31:41 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 16:39:30 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 16:45:03 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 16:46:44 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 17:02:48 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 17:03:29 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 17:07:26 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 17:10:20 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: Admin2
+2026-07-11 17:14:29 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 17:26:23 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 17:32:56 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 17:37:42 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 17:49:38 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 17:51:02 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 18:02:11 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-07-11 18:02:11 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-07-11 18:02:11 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-07-11 18:17:35 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-07-11 18:17:35 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-07-11 18:17:35 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-07-11 18:18:19 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 18:20:11 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 18:24:18 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-07-11 18:24:18 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-07-11 18:24:18 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-07-11 18:24:34 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 18:32:15 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 18:33:12 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
+2026-07-11 18:44:49 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-07-11 18:44:49 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-07-11 18:44:49 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-07-11 19:03:25 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-07-11 19:03:25 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-07-11 19:03:25 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-07-11 19:10:16 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-07-11 19:10:16 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-07-11 19:10:16 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-07-11 19:18:03 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-07-11 19:18:03 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-07-11 19:18:03 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-07-11 19:30:51 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
+2026-07-11 19:30:52 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
+2026-07-11 19:30:52 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop

@@ -1,20 +1,17 @@
 package com.inventario.view;
 
-/**
- *
- * @author Luis Daniel
- */
-
+import java.io.File;
+import com.inventario.util.ReporteManager;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.net.URL;
 
 public class PrincipalMenuView extends JFrame {
 
-    private final String RUTA_FONDO = "src/main/resources/fondo.png";
+    private final String RUTA_FONDO = "/fondo.png"; // Ruta interna en el JAR
     private Image imagenFondo;
 
     private final Color AZUL_OSCURO = new Color(13, 40, 74);
@@ -30,9 +27,10 @@ public class PrincipalMenuView extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
+        // Carga de imagen de fondo usando getResource
         try {
-            File bgFile = new File(RUTA_FONDO);
-            if (bgFile.exists()) imagenFondo = ImageIO.read(bgFile);
+            URL imgURL = getClass().getResource(RUTA_FONDO);
+            if (imgURL != null) imagenFondo = ImageIO.read(imgURL);
         } catch (Exception e) {
             System.err.println("No se pudo cargar el fondo.");
         }
@@ -61,8 +59,7 @@ public class PrincipalMenuView extends JFrame {
             protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                GradientPaint grad = new GradientPaint(0, 0, new Color(13, 40, 74, 220),
-                                                       0, getHeight(), new Color(20, 60, 110, 220));
+                GradientPaint grad = new GradientPaint(0, 0, new Color(13, 40, 74, 220), 0, getHeight(), new Color(20, 60, 110, 220));
                 g2.setPaint(grad);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 40, 40);
                 g2.setColor(new Color(243, 156, 18, 120));
@@ -90,8 +87,7 @@ public class PrincipalMenuView extends JFrame {
             protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                GradientPaint grad = new GradientPaint(0, 0, new Color(13, 40, 74, 210),
-                                                       0, getHeight(), new Color(20, 60, 110, 210));
+                GradientPaint grad = new GradientPaint(0, 0, new Color(13, 40, 74, 210), 0, getHeight(), new Color(20, 60, 110, 210));
                 g2.setPaint(grad);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
                 g2.setColor(new Color(255, 255, 255, 40));
@@ -106,11 +102,9 @@ public class PrincipalMenuView extends JFrame {
         JLabel lblTituloWidget = new JLabel("SESIÓN ACTIVA");
         lblTituloWidget.setFont(new Font("Segoe UI", Font.BOLD, 10));
         lblTituloWidget.setForeground(DORADO);
-
         JLabel lblUsuario = new JLabel("Administrador SGE");
         lblUsuario.setFont(new Font("Segoe UI", Font.BOLD, 16));
         lblUsuario.setForeground(Color.WHITE);
-
         JLabel lblConexion = new JLabel("● Base de datos conectada");
         lblConexion.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         lblConexion.setForeground(new Color(46, 204, 113));
@@ -124,15 +118,11 @@ public class PrincipalMenuView extends JFrame {
         contenedorWidget.add(widgetEstado);
         panelFondo.add(contenedorWidget, BorderLayout.SOUTH);
         
-          // 3. LA SOLUCIÓN: Inicializar el escritorio, hacerlo transparente 
-        // y añadirlo al centro del diseño para no tapar tu imagen de fondo.
         desktop = new JDesktopPane();
-        desktop.setOpaque(false); // Permite que se vea la imagen de fondo
-        panelFondo.add(desktop, BorderLayout.CENTER); // Lo colocamos en medio de los menús
-       
+        desktop.setOpaque(false); 
+        panelFondo.add(desktop, BorderLayout.CENTER); 
     }
 
-    // Helpers
     private JButton crearBotonMenu(String texto, JPopupMenu popup) {
         JButton btn = new JButton(texto);
         btn.setFont(new Font("Segoe UI", Font.BOLD, 13));
@@ -147,12 +137,11 @@ public class PrincipalMenuView extends JFrame {
             @Override public void mouseEntered(MouseEvent e) { btn.setForeground(DORADO); }
             @Override public void mouseExited(MouseEvent e) { btn.setForeground(BLANCO_TEXTO); }
         });
-
         btn.addActionListener(e -> popup.show(btn, 10, btn.getHeight() + 8));
         return btn;
     }
 
-    private JMenuItem crearMenuItem(String texto, String rutaIconoLocal, boolean esPeligro) {
+    private JMenuItem crearMenuItem(String texto, String nombreIcono, boolean esPeligro) {
         JMenuItem item = new JMenuItem(texto);
         item.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         item.setForeground(Color.WHITE);
@@ -160,7 +149,8 @@ public class PrincipalMenuView extends JFrame {
         item.setBorder(new EmptyBorder(8, 15, 8, 15));
         item.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        Icon icono = obtenerIconoLocal(rutaIconoLocal, 18, 18);
+        // Carga de icono corregida para JAR
+        Icon icono = obtenerIcono(nombreIcono, 18, 18);
         if (icono != null) item.setIcon(icono);
 
         item.addMouseListener(new MouseAdapter() {
@@ -181,8 +171,7 @@ public class PrincipalMenuView extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
-                GradientPaint grad = new GradientPaint(0, 0, new Color(13, 40, 74, 240),
-                                                       0, getHeight(), new Color(20, 60, 110, 230));
+                GradientPaint grad = new GradientPaint(0, 0, new Color(13, 40, 74, 240), 0, getHeight(), new Color(20, 60, 110, 230));
                 g2.setPaint(grad);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
                 g2.setColor(new Color(243, 156, 18, 120));
@@ -195,154 +184,73 @@ public class PrincipalMenuView extends JFrame {
         return popup;
     }
 
-      // Submenús
+    // --- MÉTODOS DE POPUP E ICONOS CORREGIDOS ---
     private JPopupMenu crearPopupInicio() {
         JPopupMenu popup = crearPopupBase();
-        popup.add(crearMenuItem("Panel de Control", "src/iconos/home.png", false));
-        popup.add(crearMenuItem("Cambiar Usuario", "src/iconos/user.png", false));
+        popup.add(crearMenuItem("Panel de Control", "home.png", false));
+        popup.add(crearMenuItem("Cambiar Usuario", "user.png", false));
         return popup;
     }
-
     private JPopupMenu crearPopupEquipos() {
         JPopupMenu popup = crearPopupBase();
-      // 1. Creamos el ítem, le asignamos la acción y luego lo agregamos
-        JMenuItem btnAdministrar = crearMenuItem("Administrar Equipos", "src/iconos/admin.png", false);
-        btnAdministrar.addActionListener(e -> abrirFormularioRegistro());
-        popup.add(btnAdministrar);
-
-        // 2. Hacemos lo mismo con el botón de Buscar
-        JMenuItem btnBuscar = crearMenuItem("Buscar Equipos", "src/iconos/search.png", false);
-        btnBuscar.addActionListener(e -> abrirFormularioConsulta());
-        popup.add(btnBuscar);
-
-        // 3. Este botón se queda sin acción hasta que crees su respectivo formulario
-          JMenuItem btnListar = crearMenuItem("Mostrar Lista", "src/iconos/list.png", false);
-        btnListar.addActionListener(e -> abrirFormularioLista());
-        popup.add(btnListar);
-        
+        JMenuItem btnA = crearMenuItem("Administrar Equipos", "admin.png", false);
+        btnA.addActionListener(e -> abrirAdministrarEquipos());
+        popup.add(btnA);
+        JMenuItem btnB = crearMenuItem("Buscar Equipos", "search.png", false);
+        btnB.addActionListener(e -> abrirBuscarEquipos());
+        popup.add(btnB);
         return popup;
     }
-
     private JPopupMenu crearPopupSoporte() {
         JPopupMenu popup = crearPopupBase();
-        
-        // 1. Creamos el ítem, le asignamos la acción y luego lo agregamos
-        JMenuItem btnMantenimiento = crearMenuItem("Mantenimiento", "src/iconos/tools.png", false);
-        btnMantenimiento.addActionListener(e -> abrirFormularioMantenimiento());
-        popup.add(btnMantenimiento);
-        
-       
-        popup.add(crearMenuItem("Historial Técnico", "src/iconos/history.png", false));
+        JMenuItem btnM = crearMenuItem("Mantenimiento", "tools.png", false);
+        btnM.addActionListener(e -> abrirFormularioMantenimiento());
+        popup.add(btnM);
+        popup.add(crearMenuItem("Historial Técnico", "history.png", false));
         return popup;
     }
-
     private JPopupMenu crearPopupInforme() {
         JPopupMenu popup = crearPopupBase();
-        
-            // 1. Creamos el ítem, le asignamos la acción y luego lo agregamos
-        JMenuItem btnControlInventario = crearMenuItem("Control Inventario", "src/iconos/report.png", false);
-        btnControlInventario.addActionListener(e -> abrirFormularioControlInventario());
-        popup.add(btnControlInventario);
-        
-       
-        popup.add(crearMenuItem("Exportar PDF/Excel", "src/iconos/export.png", false));
+        JMenuItem btnControl = crearMenuItem("Control Inventario", "report.png", false);
+        btnControl.addActionListener(e -> new ControlInventarioView().setVisible(true));
+        popup.add(btnControl);
+        JMenuItem btnExportar = crearMenuItem("Exportar PDF/Excel", "export.png", false);
+        btnExportar.addActionListener(e -> mostrarSelectorExportacion());
+        popup.add(btnExportar);
         popup.addSeparator();
-
-        JMenuItem btnSalir = crearMenuItem("Salir del Sistema", "src/iconos/exit.png", true);
+        JMenuItem btnSalir = crearMenuItem("Salir", "exit.png", true);
         btnSalir.addActionListener(e -> System.exit(0));
         popup.add(btnSalir);
-
         return popup;
     }
 
-    // Cargar íconos locales
-    private ImageIcon obtenerIconoLocal(String ruta, int ancho, int alto) {
-        File archivo = new File(ruta);
-        if (archivo.exists()) {
-            try {
-                Image img = ImageIO.read(archivo);
-                return new ImageIcon(img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH));
-            } catch (Exception e) {
-                System.out.println("Error cargando icono: " + ruta);
-            }
+    // MÉTODO DEFINITIVO PARA CARGAR ICONOS DESDE EL JAR
+    private Icon obtenerIcono(String nombre, int w, int h) {
+        URL url = getClass().getResource("/" + nombre);
+        if (url != null) {
+            return new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(w, h, Image.SCALE_SMOOTH));
         }
         return null;
     }
-    
-        private void abrirFormularioRegistro() {
-        JInternalFrame frame = new JInternalFrame("Registro de Productos", true, true, true, true);
-        frame.setSize(400, 450);
-        
-        MainView panelRegistro = new MainView();
-        frame.add(panelRegistro);
-        
-        centrarFrame(frame);
-        frame.setVisible(true);
-        desktop.add(frame);
-        frame.moveToFront();
+
+    private void mostrarSelectorExportacion() {
+        String[] opciones = {"Excel (.xlsx)", "PDF (.pdf)"};
+        String tipo = (String) JOptionPane.showInputDialog(this, "Seleccione formato:", "Exportar", JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+        if (tipo != null) {
+            JFileChooser fc = new JFileChooser();
+            fc.setSelectedFile(new File(tipo.contains("PDF") ? "Reporte.pdf" : "Reporte.xlsx"));
+            if (fc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+                ReporteManager rm = new ReporteManager();
+                try {
+                    if (tipo.contains("Excel")) rm.exportarExcel(fc.getSelectedFile());
+                    else rm.exportarPDF(fc.getSelectedFile());
+                    JOptionPane.showMessageDialog(this, "¡Éxito!");
+                } catch (Exception ex) { JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage()); }
+            }
+        }
     }
     
-    private void abrirFormularioConsulta() {
-        JInternalFrame frame = new JInternalFrame("Consultar Inventario", true, true, true, true);
-        frame.setSize(650, 450);
-        
-        ConsultarProductoView panelConsulta = new ConsultarProductoView();
-        frame.add(panelConsulta);
-        
-        centrarFrame(frame);
-        frame.setVisible(true);
-        desktop.add(frame);
-        frame.moveToFront();
-    }
-    
-    private void abrirFormularioLista(){
-     JInternalFrame frame = new JInternalFrame("Mostrar lista", true, true, true, true);
-        frame.setSize(700, 460);
-        
-        MostrarEquiposView panelListar = new MostrarEquiposView();
-        frame.add(panelListar);
-        
-        desktop.add(frame);
-        centrarFrame(frame);
-        frame.setVisible(true);
-        frame.moveToFront();
-    
-    }
-    
-    
-   private void abrirFormularioMantenimiento(){
-      JInternalFrame frame = new JInternalFrame("Mostrar matenimiento de equipos", true, true, true, true);
-        frame.setSize(700, 460);
-        
-        MantenimientoView panelListar = new MantenimientoView();
-        frame.add(panelListar);
-        
-        desktop.add(frame);
-        centrarFrame(frame);
-        frame.setVisible(true);
-        frame.moveToFront();
-       
-   }
-   
-   private void abrirFormularioControlInventario(){
-   
-     JInternalFrame frame = new JInternalFrame("Mostrar control de inventario", true, true, true, true);
-        frame.setSize(700, 460);
-        
-        ControlInventarioView panelListar = new ControlInventarioView();
-        frame.add(panelListar);
-        
-        desktop.add(frame);
-        centrarFrame(frame);
-        frame.setVisible(true);
-        frame.moveToFront();
-   }
-    // Método auxiliar para centrar cualquier ventana interna
-    private void centrarFrame(JInternalFrame frame) {
-        int x = (desktop.getWidth() - frame.getWidth()) / 2;
-        int y = (desktop.getHeight() - frame.getHeight()) / 2;
-        if (x < 0) x = 0;
-        if (y < 0) y = 0;
-        frame.setLocation(x, y);
-    }
+    private void abrirAdministrarEquipos() { new AdministrarEquiposView().setVisible(true); }
+    private void abrirBuscarEquipos() { new BuscarEquiposView().setVisible(true); }
+    private void abrirFormularioMantenimiento() { new MantenimientoView().setVisible(true); }
 }

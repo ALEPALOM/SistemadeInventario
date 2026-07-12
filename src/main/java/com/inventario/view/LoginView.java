@@ -2,9 +2,9 @@ package com.inventario.view;
 
 import com.inventario.dao.UsuarioDAO;
 import java.awt.*;
-import java.io.File;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.net.URL;
 
 public class LoginView extends JFrame {
 
@@ -13,10 +13,10 @@ public class LoginView extends JFrame {
     private JPasswordField txtContrasena;
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-    // DISEÑO: Rutas de recursos multimedia
-    private final String RUTA_LOGO = "src/main/resources/icono.png";
-    private final String RUTA_ICONO_USER = "src/main/resources/pass.png";
-    private final String RUTA_ICONO_PASS = "src/main/resources/user.png";
+    // DISEÑO: Nombres de los archivos (se buscarán en la raíz de los recursos)
+    private final String RUTA_LOGO = "icono.png";
+    private final String RUTA_ICONO_USER = "user.png";
+    private final String RUTA_ICONO_PASS = "pass.png";
 
     public LoginView() {
         // Configuración básica de la ventana (JFrame)
@@ -49,8 +49,9 @@ public class LoginView extends JFrame {
         logoPanel.setOpaque(false);
         
         JLabel lblLogo = new JLabel();
-        if (new File(RUTA_LOGO).exists()) {
-            ImageIcon iconLogo = new ImageIcon(RUTA_LOGO);
+        URL logoURL = getClass().getResource("/" + RUTA_LOGO);
+        if (logoURL != null) {
+            ImageIcon iconLogo = new ImageIcon(logoURL);
             Image img = iconLogo.getImage().getScaledInstance(180, -1, Image.SCALE_SMOOTH);
             lblLogo.setIcon(new ImageIcon(img));
         } else {
@@ -81,7 +82,7 @@ public class LoginView extends JFrame {
         formPanel.add(lblIconoUser, gbc);
 
         gbc.gridx = 1; gbc.gridy = 1; gbc.gridwidth = 2;
-        txtUsuario = new JTextField(15); // Asignación directa a variable de la clase
+        txtUsuario = new JTextField(15);
         txtUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         txtUsuario.setBackground(new Color(240, 240, 240));
         txtUsuario.setBorder(BorderFactory.createCompoundBorder(
@@ -104,7 +105,7 @@ public class LoginView extends JFrame {
         formPanel.add(lblIconoPass, gbc);
 
         gbc.gridx = 1; gbc.gridy = 3; gbc.gridwidth = 2;
-        txtContrasena = new JPasswordField(15); // Asignación directa a variable de la clase
+        txtContrasena = new JPasswordField(15);
         txtContrasena.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         txtContrasena.setBackground(new Color(240, 240, 240));
         txtContrasena.setBorder(BorderFactory.createCompoundBorder(
@@ -115,7 +116,7 @@ public class LoginView extends JFrame {
 
         // --- FILA 5: Botón "Iniciar sesión" ---
         gbc.gridx = 1; gbc.gridy = 4; gbc.gridwidth = 2;
-        gbc.insets = new Insets(25, 5, 8, 5); // Más espacio arriba del botón
+        gbc.insets = new Insets(25, 5, 8, 5);
         JButton btnLogin = new JButton("Iniciar sesión");
         btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnLogin.setBackground(new Color(235, 235, 235));
@@ -123,21 +124,19 @@ public class LoginView extends JFrame {
         btnLogin.setFocusPainted(false);
         btnLogin.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
         
-        // LÓGICA: Vinculación del evento del botón al método validar
         btnLogin.addActionListener(e -> validar());
         
         formPanel.add(btnLogin, gbc);
         centroPanel.add(formPanel);
     }
 
-    // LÓGICA: Método encargado de procesar la autenticación real con la Base de Datos
     private void validar() {
         String user = txtUsuario.getText();
         String pass = new String(txtContrasena.getPassword());
 
         if (usuarioDAO.autenticar(user, pass)) {
-            this.dispose(); // Cierra la ventana de login
-            new PrincipalMenuView().setVisible(true); // Abre el menú principal real
+            this.dispose();
+            new PrincipalMenuView().setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, 
                 "Credenciales incorrectas.", 
@@ -149,10 +148,11 @@ public class LoginView extends JFrame {
         }
     }
 
-    // DISEÑO: Método auxiliar para cargar e instalar los iconos de las cajas de texto
-    private void colocalIcono(JLabel label, String ruta) {
-        if (new File(ruta).exists()) {
-            ImageIcon icon = new ImageIcon(ruta);
+    // DISEÑO: Método mejorado para cargar recursos desde el JAR
+    private void colocalIcono(JLabel label, String nombreArchivo) {
+        URL imgURL = getClass().getResource("/" + nombreArchivo);
+        if (imgURL != null) {
+            ImageIcon icon = new ImageIcon(imgURL);
             Image img = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
             label.setIcon(new ImageIcon(img));
         } else {
@@ -163,11 +163,9 @@ public class LoginView extends JFrame {
 
     public static void main(String[] args) {
         try {
-            // Activa el Look and Feel del sistema operativo para mayor elegancia
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {}
-
-        // Ejecutar la interfaz gráfica de forma segura en el hilo de Swing
+        
         SwingUtilities.invokeLater(() -> {
             new LoginView().setVisible(true);
         });
