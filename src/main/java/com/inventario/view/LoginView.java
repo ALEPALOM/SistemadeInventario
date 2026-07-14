@@ -128,6 +128,9 @@ public class LoginView extends JFrame {
         
         formPanel.add(btnLogin, gbc);
         centroPanel.add(formPanel);
+        
+        // --- LLAMADA AL MÉTODO DE INICIALIZACIÓN ---
+        inicializarUsuarioAdmin();
     }
 
     private void validar() {
@@ -160,7 +163,31 @@ public class LoginView extends JFrame {
             label.setForeground(Color.CYAN);
         }
     }
-
+    private void inicializarUsuarioAdmin() {
+    String sqlVerificar = "SELECT COUNT(*) FROM usuarios WHERE usuario = 'admin2'";
+    String sqlInsertar = "INSERT INTO usuarios (usuario, contrasena_hash) VALUES (?, ?)";
+    
+    try (java.sql.Connection conn = com.inventario.util.DatabaseConnection.getConnection();
+         java.sql.PreparedStatement psVerificar = conn.prepareStatement(sqlVerificar);
+         java.sql.ResultSet rs = psVerificar.executeQuery()) {
+        
+        if (rs.next() && rs.getInt(1) == 0) {
+            try (java.sql.PreparedStatement psInsertar = conn.prepareStatement(sqlInsertar)) {
+                
+                // AQUÍ ESTÁ LA MAGIA: Encriptamos admin123 antes de guardarlo
+                String hashedPass = org.mindrot.jbcrypt.BCrypt.hashpw("admin123", org.mindrot.jbcrypt.BCrypt.gensalt());
+                
+                psInsertar.setString(1, "admin2");
+                psInsertar.setString(2, hashedPass);
+                psInsertar.executeUpdate();
+                
+                System.out.println("Usuario admin2 creado con contraseña encriptada (BCrypt).");
+            }
+        }
+    } catch (Exception e) {
+        System.err.println("Aviso al verificar o crear el usuario administrador: " + e.getMessage());
+    }
+}
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

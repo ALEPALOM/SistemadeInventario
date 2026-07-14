@@ -846,3 +846,4 @@ com.microsoft.sqlserver.jdbc.SQLServerException: Violation of UNIQUE KEY constra
 2026-07-12 13:56:25 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto eliminado exitosamente de la base de datos: ID P001
 2026-07-12 13:56:25 [main] WARN  com.inventario.dao.ProductoDAOImpl - Intento de eliminar un producto que no existe. ID: NO_EXISTE
 2026-07-12 13:56:25 [main] INFO  com.inventario.dao.ProductoDAOImpl - Producto registrado exitosamente en la Base de Datos: Laptop
+2026-07-13 21:36:51 [AWT-EventQueue-0] INFO  com.inventario.dao.UsuarioDAO - Inicio de sesión exitoso. Usuario: admin2
