@@ -1,0 +1,99 @@
+CREATE DATABASE InventarioDB;
+GO
+
+USE InventarioDB;
+GO
+
+CREATE TABLE Productos (
+    id VARCHAR(50) PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    cantidad INT NOT NULL,
+    precio DECIMAL(10,2) NOT NULL
+);
+GO
+
+CREATE TABLE cat_estado_equipo (
+    id_estado INT IDENTITY(1,1) PRIMARY KEY,
+    codigo VARCHAR(20) NOT NULL UNIQUE,
+    descripcion VARCHAR(100) NOT NULL
+);
+GO
+
+CREATE TABLE cat_tipo_equipo (
+    id_tipo INT IDENTITY(1,1) PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE
+);
+GO
+
+CREATE TABLE cat_tipo_ubicacion (
+    id_tipo_ubicacion INT IDENTITY(1,1) PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE
+);
+GO
+
+CREATE TABLE proveedores (
+    id_proveedor INT IDENTITY(1,1) PRIMARY KEY,
+    nombre VARCHAR(150) NOT NULL,
+    contacto VARCHAR(150),
+    telefono VARCHAR(50),
+    email VARCHAR(100)
+);
+GO
+
+CREATE TABLE cat_tipo_mantenimiento (
+    id_tipo_mant INT IDENTITY(1,1) PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE
+);
+GO
+
+------------------------------------------------------------
+-- ROLES Y USUARIOS
+------------------------------------------------------------
+
+CREATE TABLE roles (
+    id_rol INT IDENTITY(1,1) PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE
+);
+GO
+
+CREATE TABLE usuarios (
+    id_usuario INT IDENTITY(1,1) PRIMARY KEY,
+    usuario VARCHAR(50) NOT NULL UNIQUE,
+    contrasena_hash VARCHAR(255) NOT NULL, 
+    nombre_completo VARCHAR(150) NULL, 
+    id_rol INT NULL, 
+    correo VARCHAR(150),
+    estado VARCHAR(10) DEFAULT 'Activo',
+    fecha_registro DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (id_rol) REFERENCES roles(id_rol)
+);
+GO
+
+-------------------------------------------------------------------
+Pegar código al final de la llave de cierre de LoginView
+-------------------------------------------------------------------
+private void inicializarUsuarioAdmin() {
+    String sqlVerificar = "SELECT COUNT(*) FROM usuarios WHERE usuario = 'admin2'";
+    String sqlInsertar = "INSERT INTO usuarios (usuario, contrasena_hash) VALUES (?, ?)";
+    
+    try (java.sql.Connection conn = com.inventario.util.DatabaseConnection.getConnection();
+         java.sql.PreparedStatement psVerificar = conn.prepareStatement(sqlVerificar);
+         java.sql.ResultSet rs = psVerificar.executeQuery()) {
+        
+        if (rs.next() && rs.getInt(1) == 0) {
+            try (java.sql.PreparedStatement psInsertar = conn.prepareStatement(sqlInsertar)) {
+                
+                // AQUÍ ESTÁ LA MAGIA: Encriptamos admin123 antes de guardarlo
+                String hashedPass = org.mindrot.jbcrypt.BCrypt.hashpw("admin123", org.mindrot.jbcrypt.BCrypt.gensalt());
+                
+                psInsertar.setString(1, "admin2");
+                psInsertar.setString(2, hashedPass);
+                psInsertar.executeUpdate();
+                
+                System.out.println("Usuario admin2 creado con contraseña encriptada (BCrypt).");
+            }
+        }
+    } catch (Exception e) {
+        System.err.println("Aviso al verificar o crear el usuario administrador: " + e.getMessage());
+    }
+}
